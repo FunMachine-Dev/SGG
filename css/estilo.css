@@ -1,0 +1,372 @@
+:root {
+    --fuente: "Work Sans", sans-serif;
+    --color1: rgba(58, 104, 147, 1);
+    --color2: rgba(85, 147, 203, 1);
+    --color3: rgba(154, 206, 255, 1);
+}
+
+/*Diseño General*/
+body {
+    font-family: var(--fuente);
+}
+
+.logo {
+    width: 50px;
+    /* Ajusta el ancho de la imagen */
+    height: auto;
+    /* Ajusta automáticamente la altura para mantener la proporción */
+}
+
+h1 {
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a :hover {
+    text-decoration: none;
+}
+
+/*adornos*/
+.adorno-index {
+    background-color: rgba(58, 104, 147, 1);
+    color: white;
+    font-weight: 700;
+    font-size: x-large;
+    text-align: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    position: relative;
+    /* Posiciona el elemento de forma relativa */
+    z-index: 3;
+    /* Define el orden de apilamiento */
+    padding: 10px;
+}
+
+.adorno1 {
+    background-color: rgba(58, 104, 147, 1);
+    color: white;
+    font-weight: 700;
+    font-size: x-large;
+    text-align: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    position: relative;
+    /* Posiciona el elemento de forma relativa */
+    z-index: 3;
+    /* Define el orden de apilamiento */
+    padding: 10px;
+}
+
+.adorno2 {
+    background-color: rgba(85, 147, 203, 1);
+    color: rgba(85, 147, 203, 0);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    position: relative;
+    /* Posiciona el elemento de forma relativa */
+    top: -15px;
+    /* Desplaza hacia arriba para la superposición */
+    z-index: 2;
+    /* Define el orden de apilamiento */
+}
+
+.adorno3 {
+    background-color: rgba(154, 206, 255, 1);
+    color: rgba(154, 206, 255, 0);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    position: relative;
+    /* Posiciona el elemento de forma relativa */
+    top: -30px;
+    /* Desplaza hacia arriba para mayor superposición */
+    z-index: 1;
+    /* Define el orden de apilamiento */
+}
+
+/*ID's*/
+.id-pag {
+    background-color: #F1EEA4;
+    display: inline-block;/*adapta el tamaño a la extensión del texto*/
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 5px;
+}
+
+.txt-id-pag {
+    text-align: right;
+    margin-right: 10px;
+}
+
+
+/*Pagina index*/
+.input {
+    background-color: #d9d9d9;
+    border-style: none;
+    border-radius: 50px;
+}
+
+.row {
+    padding: 10px;
+    font-family: var(--fuente);
+    font-size: 18px;
+}
+
+.col {
+    font-size: small;
+    text-align: center;
+}
+
+.btn {
+    font-weight: 700;
+    --bs-btn-bg: var(--color1);
+    --bs-btn-hover-bg: var(--color2);
+    --bs-btn-hover-border-color: var(--color2);
+    --bs-btn-border-color: var(--color1);
+    --bs-btn-active-bg: var(--color1);
+    --bs-btn-active-border-color: var(--color1);
+    --bs-btn-hover-color: beige;
+    --bs-btn-active-color: beige;
+    border-radius: 50px;
+    color: beige;
+}
+
+.forgot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-top: 20px;
+}
+
+.forgot p {
+    margin: 0;
+    /* Elimina el margen predeterminado del párrafo */
+    text-decoration: underline;
+    color: gray;
+    cursor: pointer;
+}
+
+/*Pagina inicio*/
+.botones_inicio {
+    display: flex;
+    justify-content: center;
+    gap: 90px;
+}
+
+/*boton logout*/
+.logout {
+    background-color: #F07B7D;
+    position: fixed;
+    right: 0;
+    width: 150px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    direction: rtl;
+    cursor: pointer;
+}
+
+.logout:hover {
+    position: fixed;
+    right: 0;
+    width: 150px;
+    background-color: #A05557;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    direction: rtl;
+    cursor: pointer;
+}
+
+
+.txt-logout {
+    text-align: right;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+/*pagina rendición*/
+fieldset {
+    margin: 20px;
+    border: 1px solid var(--color1);
+    border-radius: 0.5rem;
+    text-align: center;
+    position: relative;
+}
+
+/*boton ingresar*/
+.btn_ingresar {
+    background-color: #81F867;
+    width: 160px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 5px;
+    align-items: center;
+    text-align: right;
+}
+
+.txt-btn-ingresar {
+    margin-right: 10px;
+}
+
+.btn_ingresar:hover {
+    background-color: #66BF52;
+    width: 160px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 5px;
+    align-items: center;
+    text-align: right;
+}
+
+
+/*boton finalizar*/
+.btn-finalizar {
+    background-color: #F07B7D;
+    margin-top: 10px;
+    left: 0;
+    margin-bottom: 5px;
+    width: 150px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 5px;
+    align-items: center;
+    text-align: right;
+}
+
+.txt-btn-finalizar {
+    margin-right: 10px;
+}
+
+.btn-finalizar:hover {
+    background-color: #A05557;
+    width: 150px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 5px;
+    align-items: center;
+    text-align: right;
+}
+
+
+/*boton volver*/
+.btn-volver {
+    background-color: #738DF8;
+    position: fixed;
+    right: 0;
+    bottom: 5px;
+    width: 150px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    direction: rtl;
+    cursor: pointer;
+}
+
+.txt-btn-volver {
+    text-align: right;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.btn-volver:hover {
+    background-color: #586DBD;
+    position: fixed;
+    right: 0;
+    width: 150px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    direction: rtl;
+    cursor: pointer;
+}
+
+/*campo total*/
+.total {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    user-select: none;
+}
+.total_2, .total_dif{
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    user-select: none;
+}
+.total_dif {
+    pointer-events: none;
+    user-select: none;
+}
+
+.input_totaldif{
+    width: 200px;
+}
+
+.solicitado{
+    width: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.agregar {
+    /*estilo de las celdas de los gastos agregados*/
+    background-color: #d9d9d9;
+    border-style: none;
+    border-radius: 50px;
+}
+
+/* Ocultar los botones de incremento y decremento en campos de tipo number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    /* Firefox */
+}
+
+.btn-delete {
+    cursor: pointer;
+}
+
+.col-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+/*modal: Mensaje de confirmación antes de enviar*/
+.modal-footer {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: small;
+    text-align: center;
+}
+.modal-footer-btns {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.modal-header {
+    display: flex;
+    justify-content: center;
+}
+
