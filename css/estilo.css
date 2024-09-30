@@ -21,6 +21,29 @@ h1 {
     font-weight: 700;
 }
 
+/*Aplica al título de cada gasto agregado*/
+p{
+    text-align: left;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.btn-delete {
+    display: flex; /* Utilizar flexbox para el alineado */
+    align-items: center; /* Centrar verticalmente el contenido */
+    cursor: pointer; /* Cambiar el cursor para indicar que es clickeable */
+    padding: 1rem;
+    justify-content: center;
+    margin-top: 0%;
+}
+
+/*texto que acompaña el icono de borrar gasto*/
+.delete{
+    font-weight: lighter;
+    margin: 0;
+    line-height: 25px;
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -61,6 +84,7 @@ a :hover {
     padding: 10px;
 }
 
+
 .adorno2 {
     background-color: rgba(85, 147, 203, 1);
     color: rgba(85, 147, 203, 0);
@@ -90,7 +114,8 @@ a :hover {
 /*ID's*/
 .id-pag {
     background-color: #F1EEA4;
-    display: inline-block;/*adapta el tamaño a la extensión del texto*/
+    display: inline-block;
+    /*adapta el tamaño a la extensión del texto*/
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     padding: 5px;
@@ -101,23 +126,21 @@ a :hover {
     margin-right: 10px;
 }
 
-
 /*Pagina index*/
 .input {
     background-color: #d9d9d9;
     border-style: none;
-    border-radius: 50px;
+    border-radius: 30px;
+    height: 30px;
+    display: block;
+    margin: 0 auto;
+    width:80%;
+    padding: 0.3rem 0.5rem;
 }
+
 
 .row {
     padding: 10px;
-    font-family: var(--fuente);
-    font-size: 18px;
-}
-
-.col {
-    font-size: small;
-    text-align: center;
 }
 
 .btn {
@@ -169,6 +192,7 @@ a :hover {
     cursor: pointer;
 }
 
+
 .logout:hover {
     position: fixed;
     right: 0;
@@ -190,13 +214,20 @@ a :hover {
     gap: 10px;
 }
 
-/*pagina rendición*/
+/*fieldset de ingreso datos*/
 fieldset {
-    margin: 20px;
+    margin: 90px 90px;
+    margin-top: auto;
     border: 1px solid var(--color1);
     border-radius: 0.5rem;
     text-align: center;
-    position: relative;
+    margin-bottom: 10px;
+}
+/*Ajuste del fieldset a pantallas chicas*/
+@media (max-width:768px){
+    fieldset{
+        margin: 20px 20px;
+    }
 }
 
 /*boton ingresar*/
@@ -222,6 +253,19 @@ fieldset {
     padding: 5px;
     align-items: center;
     text-align: right;
+}
+
+#datosIngresados{
+    border: none;
+}
+
+.tituloGastos {
+    display: flex;
+    align-items: center;          /* Centra verticalmente los elementos */
+    justify-content: space-between; /* Asegura que el título y el botón se distribuyan con espacio entre ellos */
+    width: 100%;                 /* Asegura que ocupe el ancho completo del contenedor padre */
+    padding: 10px;               /* Espaciado interno (opcional) */
+    border-radius: 5px;          /* Bordes redondeados (opcional) */
 }
 
 
@@ -252,7 +296,6 @@ fieldset {
     align-items: center;
     text-align: right;
 }
-
 
 /*boton volver*/
 .btn-volver {
@@ -288,34 +331,13 @@ fieldset {
     cursor: pointer;
 }
 
-/*campo total*/
-.total {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;
-    user-select: none;
-}
-.total_2, .total_dif{
-    display: flex;
-    align-items: center;
-    pointer-events: none;
-    user-select: none;
-}
-.total_dif {
+/*elimina el cursor en total y diferencia*/
+#total, #diferencia {
     pointer-events: none;
     user-select: none;
 }
 
-.input_totaldif{
-    width: 200px;
-}
 
-.solicitado{
-    width: 200px;
-    display: flex;
-    align-items: center;
-}
 
 .agregar {
     /*estilo de las celdas de los gastos agregados*/
@@ -324,7 +346,7 @@ fieldset {
     border-radius: 50px;
 }
 
-/* Ocultar los botones de incremento y decremento en campos de tipo number */
+/* Ocultar los botones de incremento y decremento (^) en campos de tipo number */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -340,13 +362,7 @@ input[type="number"] {
     cursor: pointer;
 }
 
-.col-container {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-}
-
-.titulo{
+.titulo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -360,13 +376,14 @@ input[type="number"] {
     font-size: small;
     text-align: center;
 }
+
 .modal-footer-btns {
     display: flex;
     justify-content: center;
     gap: 10px;
 }
+
 .modal-header {
     display: flex;
     justify-content: center;
 }
-

@@ -35,88 +35,52 @@
             Rendición de gastos
         </div>
     </div>
-    <!--form ingreso datos-->
-    <form id="miFormulario" class="form_principal">
+    <!--fieldset ingreso de datos-->
         <fieldset>
-            <legend class="float-none w-auto px-3">Ingrese los datos solicitados</legend>
-            <!--cuadro total-->
-            <div class="container text-center solicitado">
+            <!--la class float deja el legend sobre el margen del fieldset-->
+            <legend class="float-none w-auto px-2">Ingrese los datos solicitados</legend>
+
+            <!--cuadro solicitado/total/diferencia-->
+            <div class="container-md text-center info-solicitado">
                 <div class="row">
-                    <div class="col">
-                        Monto solicitado
-                        <div class="solicitado">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-coin" width="32"
-                                height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#81F867" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                                <path
-                                    d="M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 1 0 0 4h2a2 2 0 1 1 0 4h-2a2 2 0 0 1 -1.8 -1" />
-                                <path d="M12 7v10" />
-                            </svg>                     
-                            <input class="input form-control" type="number" id="solicitado">
-                        </div>
+                    <div class="col-12 col-md-4">
+                        Monto solicitado:
+                        <input class="input form-control" type="number" id="solicitado">
+                    </div>
+                    <div class="col-12 col-md-4">
+                        Total:
+                        <input class="input form-control" type="text" id="total" readonly>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        Diferencia:
+                        <input class="input form-control" type="text" id="diferencia" readonly>
                     </div>
                 </div>
             </div>
-            <!--esta class permite que el legend se ubique encima del margen superior-->
-            <div class="container-md text-center" id="container">
+
+            <!--Ingreso de datos-->
+            <div class="container-md text-center info-rendicion" id="container">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-12 col-md-3">
                         Fecha
                         <input class="input form-control" type="date" id="fecha">
                     </div>
-                    <div class="col">
-                        N° de boleta o factura
+                    <div class="col-12 col-md-3">
+                        N° boleta/factura
                         <input class="input form-control" type="text" id="num_boleta">
                     </div>
-                    <div class="col">
+                    <div class="col-12 col-md-3">
                         Descripción
                         <input class="input form-control" type="text" id="descripcion">
                     </div>
-                    <div class="col">
+                    <div class="col-12 col-md-3">
                         Monto
                         <input class="input form-control" type="number" id="monto">
                     </div>
                 </div>
             </div>
-            <!--cuadro total+diferencia-->
-            <div class="container text-center total">
-                <div class="row">
-                    <div class="col">
-                        Total
-                        <div class="total_dif">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-coin" width="32"
-                                height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#81F867" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                                <path
-                                    d="M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 1 0 0 4h2a2 2 0 1 1 0 4h-2a2 2 0 0 1 -1.8 -1" />
-                                <path d="M12 7v10" />
-                            </svg>
-                            <input class="input form-control input_totaldif" type="text" id="total">
-                        </div>
-                    </div>
-                    <div class="col">
-                        Diferencia
-                        <div class="total_dif">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-coin" width="32"
-                                height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#81F867" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                                <path
-                                    d="M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 1 0 0 4h2a2 2 0 1 1 0 4h-2a2 2 0 0 1 -1.8 -1" />
-                                <path d="M12 7v10" />
-                            </svg>
-                            <input class="input form-control" type="number" id="diferencia">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </fieldset>
-    </form>
+   
 
 
     <!--botón "ingresar gasto"-->
@@ -134,70 +98,68 @@
         </div>
     </div>
 
+    <!--botón "finalizar"-->
+    <div class="btn-finalizar" id="submitBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <div class="txt-btn-finalizar" role="button" id="liveAlertBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20"
+                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                <path d="M9 12l2 2l4 -4" />
+            </svg>
+            Finalizar
+        </div>
+    </div>
 
-    <!--botones footer-->
-    <section class="btn-footer">
-        <!--botón "finalizar"-->
-        <div class="btn-finalizar" id="submitBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <div class="txt-btn-finalizar" role="button" id="liveAlertBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20"
-                    height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+   <div id="datosIngresados"></div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Comprobar información</h1>
+                </div>
+                <div class="modal-body">
+                    <!-- Aquí se llenará con la información de las filas -->
+                    <div id="modalBodyContent">
+                        <!-- Contenido dinámico va aquí -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    Si necesita editar la información proporcionada, haga click en <strong>"Editar"</strong> y
+                    modifique directamente la información en las filas correspondientes. Si la información está
+                    correcta, haga click en <strong>"Enviar rendición"</strong>.
+                    <div class="modal-footer-btns">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Editar</button>
+                        <a href="enviar-reembolso.html">
+                            <button type="button" class="btn btn-primary">Enviar rendición</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--botón "volver"-->
+    <div class="btn-volver">
+        <a href="inicio.html">
+            <div class="txt-btn-volver" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-arrow-left"
+                    width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
                     stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                    <path d="M9 12l2 2l4 -4" />
+                    <path d="M12 21a9 9 0 1 0 0 -18a9 9 0 0 0 0 18" />
+                    <path d="M8 12l4 4" />
+                    <path d="M8 12h8" />
+                    <path d="M12 8l-4 4" />
                 </svg>
-                Finalizar
+                Volver
             </div>
-        </div>
+        </a>
+    </div>
 
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Comprobar información</h1>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Aquí se llenará con la información de las filas -->
-                        <div id="modalBodyContent">
-                            <!-- Contenido dinámico va aquí -->
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        Si necesita editar la información proporcionada, haga click en <strong>"Editar"</strong> y
-                        modifique directamente la información en las filas correspondientes. Si la información está
-                        correcta, haga click en <strong>"Enviar rendición"</strong>.
-                        <div class="modal-footer-btns">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Editar</button>
-                            <a href="enviar-reembolso.html">
-                                <button type="button" class="btn btn-primary">Enviar rendición</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--botón "volver"-->
-        <div class="btn-volver">
-            <a href="inicio.html">
-                <div class="txt-btn-volver" role="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-arrow-left"
-                        width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M12 21a9 9 0 1 0 0 -18a9 9 0 0 0 0 18" />
-                        <path d="M8 12l4 4" />
-                        <path d="M8 12h8" />
-                        <path d="M12 8l-4 4" />
-                    </svg>
-                    Volver
-                </div>
-            </a>
-        </div>
-    </section>
 
     <!--Sripts-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
