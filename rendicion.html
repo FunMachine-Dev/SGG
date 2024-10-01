@@ -36,51 +36,51 @@
         </div>
     </div>
     <!--fieldset ingreso de datos-->
-        <fieldset>
-            <!--la class float deja el legend sobre el margen del fieldset-->
-            <legend class="float-none w-auto px-2">Ingrese los datos solicitados</legend>
+    <fieldset>
+        <!--la class float deja el legend sobre el margen del fieldset-->
+        <legend class="float-none w-auto px-2">Ingrese los datos solicitados</legend>
 
-            <!--cuadro solicitado/total/diferencia-->
-            <div class="container-md text-center info-solicitado">
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        Monto solicitado:
-                        <input class="input form-control" type="number" id="solicitado">
-                    </div>
-                    <div class="col-12 col-md-4">
-                        Total:
-                        <input class="input form-control" type="text" id="total" readonly>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        Diferencia:
-                        <input class="input form-control" type="text" id="diferencia" readonly>
-                    </div>
+        <!--cuadro solicitado/total/diferencia-->
+        <div class="container-md text-center info-solicitado">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    Monto solicitado:
+                    <input class="input form-control" type="number" id="solicitado">
+                </div>
+                <div class="col-12 col-md-4">
+                    Total:
+                    <input class="input form-control" type="number" id="total" readonly>
+                </div>
+                <div class="col-12 col-md-4">
+                    Diferencia:
+                    <input class="input form-control" type="number" id="diferencia" readonly>
                 </div>
             </div>
+        </div>
 
-            <!--Ingreso de datos-->
-            <div class="container-md text-center info-rendicion" id="container">
-                <div class="row">
-                    <div class="col-12 col-md-3">
-                        Fecha
-                        <input class="input form-control" type="date" id="fecha">
-                    </div>
-                    <div class="col-12 col-md-3">
-                        N° boleta/factura
-                        <input class="input form-control" type="text" id="num_boleta">
-                    </div>
-                    <div class="col-12 col-md-3">
-                        Descripción
-                        <input class="input form-control" type="text" id="descripcion">
-                    </div>
-                    <div class="col-12 col-md-3">
-                        Monto
-                        <input class="input form-control" type="number" id="monto">
-                    </div>
+        <!--Ingreso de datos-->
+        <div class="container-md text-center info-rendicion">
+            <div class="row">
+                <div class="col-12 col-md-3">
+                    Fecha
+                    <input class="input form-control" type="date" id="fecha">
+                </div>
+                <div class="col-12 col-md-3">
+                    N° boleta/factura
+                    <input class="input form-control" type="text" id="num_boleta">
+                </div>
+                <div class="col-12 col-md-3">
+                    Descripción
+                    <input class="input form-control" type="text" id="descripcion">
+                </div>
+                <div class="col-12 col-md-3">
+                    Monto
+                    <input class="input form-control" type="number" id="monto">
                 </div>
             </div>
-        </fieldset>
-   
+        </div>
+    </fieldset>
+
 
 
     <!--botón "ingresar gasto"-->
@@ -98,6 +98,9 @@
         </div>
     </div>
 
+    <!--div donde aparecen los datos ingresados-->
+    <div id="datosIngresados"></div>
+
     <!--botón "finalizar"-->
     <div class="btn-finalizar" id="submitBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <div class="txt-btn-finalizar" role="button" id="liveAlertBtn">
@@ -112,7 +115,7 @@
         </div>
     </div>
 
-   <div id="datosIngresados"></div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

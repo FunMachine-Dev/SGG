@@ -9,51 +9,24 @@
 body {
     font-family: var(--fuente);
 }
-
 .logo {
     width: 50px;
     /* Ajusta el ancho de la imagen */
     height: auto;
     /* Ajusta automáticamente la altura para mantener la proporción */
 }
-
 h1 {
     font-weight: 700;
 }
-
-/*Aplica al título de cada gasto agregado*/
-p{
-    text-align: left;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-.btn-delete {
-    display: flex; /* Utilizar flexbox para el alineado */
-    align-items: center; /* Centrar verticalmente el contenido */
-    cursor: pointer; /* Cambiar el cursor para indicar que es clickeable */
-    padding: 1rem;
-    justify-content: center;
-    margin-top: 0%;
-}
-
-/*texto que acompaña el icono de borrar gasto*/
-.delete{
-    font-weight: lighter;
-    margin: 0;
-    line-height: 25px;
-}
-
 a {
     text-decoration: none;
     color: black;
 }
-
 a :hover {
     text-decoration: none;
 }
 
-/*adornos*/
+/*adornos diseño*/
 .adorno-index {
     background-color: rgba(58, 104, 147, 1);
     color: white;
@@ -68,7 +41,6 @@ a :hover {
     /* Define el orden de apilamiento */
     padding: 10px;
 }
-
 .adorno1 {
     background-color: rgba(58, 104, 147, 1);
     color: white;
@@ -83,8 +55,6 @@ a :hover {
     /* Define el orden de apilamiento */
     padding: 10px;
 }
-
-
 .adorno2 {
     background-color: rgba(85, 147, 203, 1);
     color: rgba(85, 147, 203, 0);
@@ -97,7 +67,6 @@ a :hover {
     z-index: 2;
     /* Define el orden de apilamiento */
 }
-
 .adorno3 {
     background-color: rgba(154, 206, 255, 1);
     color: rgba(154, 206, 255, 0);
@@ -120,43 +89,12 @@ a :hover {
     border-bottom-right-radius: 20px;
     padding: 5px;
 }
-
 .txt-id-pag {
     text-align: right;
     margin-right: 10px;
 }
 
-/*Pagina index*/
-.input {
-    background-color: #d9d9d9;
-    border-style: none;
-    border-radius: 30px;
-    height: 30px;
-    display: block;
-    margin: 0 auto;
-    width:80%;
-    padding: 0.3rem 0.5rem;
-}
-
-
-.row {
-    padding: 10px;
-}
-
-.btn {
-    font-weight: 700;
-    --bs-btn-bg: var(--color1);
-    --bs-btn-hover-bg: var(--color2);
-    --bs-btn-hover-border-color: var(--color2);
-    --bs-btn-border-color: var(--color1);
-    --bs-btn-active-bg: var(--color1);
-    --bs-btn-active-border-color: var(--color1);
-    --bs-btn-hover-color: beige;
-    --bs-btn-active-color: beige;
-    border-radius: 50px;
-    color: beige;
-}
-
+/*div "olvidé mi contraseña"*/
 .forgot {
     display: flex;
     align-items: center;
@@ -164,16 +102,59 @@ a :hover {
     gap: 8px;
     padding-top: 20px;
 }
-
 .forgot p {
     margin: 0;
-    /* Elimina el margen predeterminado del párrafo */
     text-decoration: underline;
     color: gray;
     cursor: pointer;
 }
 
-/*Pagina inicio*/
+
+/*Aplica al título de cada gasto agregado*/
+p{
+    text-align: left;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/*FORMULARIOS*/
+/*fieldset de ingreso datos*/
+fieldset {
+    margin: 90px 90px;
+    margin-top: auto;
+    border: 1px solid var(--color1);
+    border-radius: 0.5rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/*Ajuste del fieldset a pantallas chicas*/
+@media (max-width:768px){
+    fieldset{
+        margin: 20px 20px;
+    }
+}
+
+/*fila que contiene las columnas con los campos de texto*/
+.row {
+    padding: 10px;
+    padding-bottom: 10px;
+    justify-content: center;
+}
+
+/*estilo interior campos de texto*/
+.input {
+    background-color: #d9d9d9;
+    border-style: none;
+    border-radius: 30px;
+    height: 30px;
+    display: block;
+    margin: 0 auto;
+    width:200px;
+   
+}
+
+/*Botones pagina inicio*/
 .botones_inicio {
     display: flex;
     justify-content: center;
@@ -191,8 +172,6 @@ a :hover {
     direction: rtl;
     cursor: pointer;
 }
-
-
 .logout:hover {
     position: fixed;
     right: 0;
@@ -203,8 +182,6 @@ a :hover {
     direction: rtl;
     cursor: pointer;
 }
-
-
 .txt-logout {
     text-align: right;
     padding: 5px;
@@ -214,22 +191,6 @@ a :hover {
     gap: 10px;
 }
 
-/*fieldset de ingreso datos*/
-fieldset {
-    margin: 90px 90px;
-    margin-top: auto;
-    border: 1px solid var(--color1);
-    border-radius: 0.5rem;
-    text-align: center;
-    margin-bottom: 10px;
-}
-/*Ajuste del fieldset a pantallas chicas*/
-@media (max-width:768px){
-    fieldset{
-        margin: 20px 20px;
-    }
-}
-
 /*boton ingresar*/
 .btn_ingresar {
     background-color: #81F867;
@@ -237,14 +198,13 @@ fieldset {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     padding: 5px;
+    margin-bottom: 10px;
     align-items: center;
     text-align: right;
 }
-
 .txt-btn-ingresar {
     margin-right: 10px;
 }
-
 .btn_ingresar:hover {
     background-color: #66BF52;
     width: 160px;
@@ -254,11 +214,9 @@ fieldset {
     align-items: center;
     text-align: right;
 }
-
 #datosIngresados{
     border: none;
 }
-
 .tituloGastos {
     display: flex;
     align-items: center;          /* Centra verticalmente los elementos */
@@ -267,7 +225,28 @@ fieldset {
     padding: 10px;               /* Espaciado interno (opcional) */
     border-radius: 5px;          /* Bordes redondeados (opcional) */
 }
+/*estilo de las celdas de los gastos ingresados*/
+.agregar {   
+    background-color: #d9d9d9;
+    border-style: none;
+    border-radius: 50px;
+}
 
+/*Boton borrar gasto*/
+.btn-delete {
+    display: flex; /* Utilizar flexbox para el alineado */
+    align-items: center; /* Centrar verticalmente el contenido */
+    cursor: pointer; /* Cambiar el cursor para indicar que es clickeable */
+    padding: 1rem;
+    justify-content: center;
+    margin-top: 0%;
+}
+/*texto que acompaña el icono de borrar gasto*/
+.delete{
+    font-weight: lighter;
+    margin: 0;
+    line-height: 25px;
+}
 
 /*boton finalizar*/
 .btn-finalizar {
@@ -282,11 +261,9 @@ fieldset {
     align-items: center;
     text-align: right;
 }
-
 .txt-btn-finalizar {
     margin-right: 10px;
 }
-
 .btn-finalizar:hover {
     background-color: #A05557;
     width: 150px;
@@ -309,7 +286,6 @@ fieldset {
     direction: rtl;
     cursor: pointer;
 }
-
 .txt-btn-volver {
     text-align: right;
     padding: 5px;
@@ -319,7 +295,6 @@ fieldset {
     gap: 10px;
     margin-left: 10px;
 }
-
 .btn-volver:hover {
     background-color: #586DBD;
     position: fixed;
@@ -331,19 +306,10 @@ fieldset {
     cursor: pointer;
 }
 
-/*elimina el cursor en total y diferencia*/
+/*elimina el cursor en campor de texto total y diferencia*/
 #total, #diferencia {
     pointer-events: none;
     user-select: none;
-}
-
-
-
-.agregar {
-    /*estilo de las celdas de los gastos agregados*/
-    background-color: #d9d9d9;
-    border-style: none;
-    border-radius: 50px;
 }
 
 /* Ocultar los botones de incremento y decremento (^) en campos de tipo number */
@@ -352,16 +318,12 @@ input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
 input[type="number"] {
     -moz-appearance: textfield;
     /* Firefox */
 }
 
-.btn-delete {
-    cursor: pointer;
-}
-
+/*icono+titulo pantalla enviado*/
 .titulo {
     display: flex;
     justify-content: center;
@@ -386,4 +348,18 @@ input[type="number"] {
 .modal-header {
     display: flex;
     justify-content: center;
+}
+/*botones modal*/
+.btn {
+    font-weight: 700;
+    --bs-btn-bg: var(--color1);
+    --bs-btn-hover-bg: var(--color2);
+    --bs-btn-hover-border-color: var(--color2);
+    --bs-btn-border-color: var(--color1);
+    --bs-btn-active-bg: var(--color1);
+    --bs-btn-active-border-color: var(--color1);
+    --bs-btn-hover-color: beige;
+    --bs-btn-active-color: beige;
+    border-radius: 50px;
+    color: beige;
 }
