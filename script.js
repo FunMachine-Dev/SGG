@@ -201,7 +201,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 event.preventDefault(); // Evita acciones predeterminadas para pruebas
 
                 // Obtén todas las filas dinámicas
-                var rows = document.querySelectorAll('#container .row');
+                var rows = document.querySelectorAll('#datosIngresados .row');
+                console.log(`Se han encontrado ${rows.length} filas en el contenedor.`);
                 var modalBody = document.querySelector('.modal-body');
 
                 // Limpia el contenido del modal
