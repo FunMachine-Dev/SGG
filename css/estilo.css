@@ -9,19 +9,23 @@
 body {
     font-family: var(--fuente);
 }
+
 .logo {
     width: 50px;
     /* Ajusta el ancho de la imagen */
     height: auto;
     /* Ajusta automáticamente la altura para mantener la proporción */
 }
+
 h1 {
     font-weight: 700;
 }
+
 a {
     text-decoration: none;
     color: black;
 }
+
 a :hover {
     text-decoration: none;
 }
@@ -41,6 +45,7 @@ a :hover {
     /* Define el orden de apilamiento */
     padding: 10px;
 }
+
 .adorno1 {
     background-color: rgba(58, 104, 147, 1);
     color: white;
@@ -55,6 +60,7 @@ a :hover {
     /* Define el orden de apilamiento */
     padding: 10px;
 }
+
 .adorno2 {
     background-color: rgba(85, 147, 203, 1);
     color: rgba(85, 147, 203, 0);
@@ -67,6 +73,7 @@ a :hover {
     z-index: 2;
     /* Define el orden de apilamiento */
 }
+
 .adorno3 {
     background-color: rgba(154, 206, 255, 1);
     color: rgba(154, 206, 255, 0);
@@ -89,6 +96,7 @@ a :hover {
     border-bottom-right-radius: 20px;
     padding: 5px;
 }
+
 .txt-id-pag {
     text-align: right;
     margin-right: 10px;
@@ -102,6 +110,7 @@ a :hover {
     gap: 8px;
     padding-top: 20px;
 }
+
 .forgot p {
     margin: 0;
     text-decoration: underline;
@@ -111,7 +120,7 @@ a :hover {
 
 
 /*Aplica al título de cada gasto agregado*/
-p{
+p {
     text-align: left;
     font-weight: bold;
     margin-top: 20px;
@@ -129,8 +138,8 @@ fieldset {
 }
 
 /*Ajuste del fieldset a pantallas chicas*/
-@media (max-width:768px){
-    fieldset{
+@media (max-width:768px) {
+    fieldset {
         margin: 20px 20px;
     }
 }
@@ -150,9 +159,22 @@ fieldset {
     height: 30px;
     display: block;
     margin: 0 auto;
-    width:200px;
-   
+    width: 200px;
+
 }
+
+/*ancho del boton mostrar pass*/
+.btn-outline-secondary {
+    height: 30px;
+}
+
+
+.input-group .btn {
+    width: 90px; /* Define el ancho del botón según tus necesidades */
+}
+
+
+
 
 /*Botones pagina inicio*/
 .botones_inicio {
@@ -172,6 +194,7 @@ fieldset {
     direction: rtl;
     cursor: pointer;
 }
+
 .logout:hover {
     position: fixed;
     right: 0;
@@ -182,6 +205,7 @@ fieldset {
     direction: rtl;
     cursor: pointer;
 }
+
 .txt-logout {
     text-align: right;
     padding: 5px;
@@ -202,9 +226,11 @@ fieldset {
     align-items: center;
     text-align: right;
 }
+
 .txt-btn-ingresar {
     margin-right: 10px;
 }
+
 .btn_ingresar:hover {
     background-color: #66BF52;
     width: 160px;
@@ -214,19 +240,27 @@ fieldset {
     align-items: center;
     text-align: right;
 }
-#datosIngresados{
+
+#datosIngresados {
     border: none;
 }
+
 .tituloGastos {
     display: flex;
-    align-items: center;          /* Centra verticalmente los elementos */
-    justify-content: space-between; /* Asegura que el título y el botón se distribuyan con espacio entre ellos */
-    width: 100%;                 /* Asegura que ocupe el ancho completo del contenedor padre */
-    padding: 10px;               /* Espaciado interno (opcional) */
-    border-radius: 5px;          /* Bordes redondeados (opcional) */
+    align-items: center;
+    /* Centra verticalmente los elementos */
+    justify-content: space-between;
+    /* Asegura que el título y el botón se distribuyan con espacio entre ellos */
+    width: 100%;
+    /* Asegura que ocupe el ancho completo del contenedor padre */
+    padding: 10px;
+    /* Espaciado interno (opcional) */
+    border-radius: 5px;
+    /* Bordes redondeados (opcional) */
 }
+
 /*estilo de las celdas de los gastos ingresados*/
-.agregar {   
+.agregar {
     background-color: #d9d9d9;
     border-style: none;
     border-radius: 50px;
@@ -234,15 +268,19 @@ fieldset {
 
 /*Boton borrar gasto*/
 .btn-delete {
-    display: flex; /* Utilizar flexbox para el alineado */
-    align-items: center; /* Centrar verticalmente el contenido */
-    cursor: pointer; /* Cambiar el cursor para indicar que es clickeable */
+    display: flex;
+    /* Utilizar flexbox para el alineado */
+    align-items: center;
+    /* Centrar verticalmente el contenido */
+    cursor: pointer;
+    /* Cambiar el cursor para indicar que es clickeable */
     padding: 1rem;
     justify-content: center;
     margin-top: 0%;
 }
+
 /*texto que acompaña el icono de borrar gasto*/
-.delete{
+.delete {
     font-weight: lighter;
     margin: 0;
     line-height: 25px;
@@ -261,9 +299,11 @@ fieldset {
     align-items: center;
     text-align: right;
 }
+
 .txt-btn-finalizar {
     margin-right: 10px;
 }
+
 .btn-finalizar:hover {
     background-color: #A05557;
     width: 150px;
@@ -286,6 +326,7 @@ fieldset {
     direction: rtl;
     cursor: pointer;
 }
+
 .txt-btn-volver {
     text-align: right;
     padding: 5px;
@@ -295,6 +336,7 @@ fieldset {
     gap: 10px;
     margin-left: 10px;
 }
+
 .btn-volver:hover {
     background-color: #586DBD;
     position: fixed;
@@ -307,7 +349,8 @@ fieldset {
 }
 
 /*elimina el cursor en campor de texto total y diferencia*/
-#total, #diferencia {
+#total,
+#diferencia {
     pointer-events: none;
     user-select: none;
 }
@@ -318,6 +361,7 @@ input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
 input[type="number"] {
     -moz-appearance: textfield;
     /* Firefox */
@@ -349,6 +393,7 @@ input[type="number"] {
     display: flex;
     justify-content: center;
 }
+
 /*botones modal*/
 .btn {
     font-weight: 700;

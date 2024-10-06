@@ -7,14 +7,19 @@ document.addEventListener('DOMContentLoaded', function () {
         var script = document.createElement('script');
         script.src = src;
         script.onload = callback;
+        script.onerror = function () {
+            console.error('Error al cargar el script: ' + src);
+        };
         document.head.appendChild(script);
     }
 
-    // Cargar Bootstrap y Popper.js
+    // Carga Popper.js, Bootstrap
     loadScript('https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.7/umd/popper.min.js', function () {
         console.log('Popper.js cargado');
-        loadScript('https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js', function () {
+
+        loadScript('https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js', function () {
             console.log('Bootstrap cargado');
+
         });
     });
 
@@ -38,10 +43,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //IF en reembolso
-    /*btn agregar gasto*/
     if (path.includes('reembolso.html')) {
         var btn_ingresar = document.getElementById('btn_ingresar');
         var datosIngresados = document.getElementById('datosIngresados');
+        
+        /*btn agregar gasto*/
         if (btn_ingresar && datosIngresados) {
             let rowCounter = 0; // Contador para hacer únicos los name
             let visibleGastos = 0; // Contador para gastos visibles
@@ -131,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         input.type = 'number'; // Último campo como tipo number para monto
                         input.addEventListener('input', function () {
                             updateTotal();
-                            updateDiferencia();
+                            
                         }); // Agregar evento input para actualizar total
                     } else {
                         input.type = 'text'; // Campos intermedios como tipo text
@@ -162,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Actualizar total
                 updateTotal();
-                
+
             });
 
             // Función para actualizar los títulos de gastos
@@ -179,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     .replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Agrega separadores de miles
             }
 
-            
+
 
             function updateTotal() {
                 var total = 0;
@@ -211,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Recorre cada fila y extrae la información de los inputs
                 rows.forEach(function (row, index) {
                     // Omitir la primera fila (índice 0)
-                    if (index > 0) {
+                    if (index >= 0) {
                         var inputs = row.querySelectorAll('input');
                         if (inputs.length > 0) {
                             var fecha = inputs[0].value;
@@ -221,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                             // Agrega la información de la fila al modal
                             var rowInfo = `
-                                    <p><strong>Gasto ${index}:</strong></p>
+                                    <p><strong>Gasto ${index+1}:</strong></p>
                                     <ul>
                                         <li>Fecha: ${fecha}</li>
                                         <li>N° Bol/Fact: ${numBoleta}</li>
@@ -241,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Agrega el total al final del contenido del modal
                 var totalInfo = `
                         <div class="mt-3">
-                            <strong>Total reembolso solicitado:</strong> $${formatNumber(total)}
+                            <strong>Total reembolso solicitado:</strong> $${total}
                         </div>
                     `;
                 modalBody.innerHTML += totalInfo;
@@ -446,18 +452,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Recorre cada fila y extrae la información de los inputs
                 rows.forEach(function (row, index) {
                     // Omitir la primera fila (índice 0)
-                    
-                        var inputs = row.querySelectorAll('input');
 
-                        if (inputs.length > 0) {
-                            var fecha = inputs[0].value;
-                            var numBoleta = inputs[1].value;
-                            var descripcion = inputs[2].value;
-                            var monto = inputs[3].value;
+                    var inputs = row.querySelectorAll('input');
 
-                            // Agrega la información de la fila al modal
-                            var rowInfo = `
-                                    <p><strong>Gasto ${index+1}:</strong></p>
+                    if (inputs.length > 0) {
+                        var fecha = inputs[0].value;
+                        var numBoleta = inputs[1].value;
+                        var descripcion = inputs[2].value;
+                        var monto = inputs[3].value;
+
+                        // Agrega la información de la fila al modal
+                        var rowInfo = `
+                                    <p><strong>Gasto ${index + 1}:</strong></p>
                                     <ul>
                                         <li>Fecha: ${fecha}</li>
                                         <li>N° Bol/Fact: ${numBoleta}</li>
@@ -466,9 +472,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                                     </ul>
                                 `;
-                            modalBody.innerHTML += rowInfo;
-                        }
-                    
+                        modalBody.innerHTML += rowInfo;
+                    }
+
                 });
 
                 // Obtén el valor del campo 'total'

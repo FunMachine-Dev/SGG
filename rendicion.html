@@ -35,7 +35,7 @@
             Rendición de gastos
         </div>
     </div>
-    <!--fieldset ingreso de datos-->
+    <!--formulario ingreso de datos-->
     <fieldset>
         <!--la class float deja el legend sobre el margen del fieldset-->
         <legend class="float-none w-auto px-2">Ingrese los datos solicitados</legend>
@@ -45,15 +45,15 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     Monto solicitado:
-                    <input class="input form-control" type="number" id="solicitado">
+                    <input class="input form-control" type="text" id="inputDinero">
                 </div>
                 <div class="col-12 col-md-4">
                     Total:
-                    <input class="input form-control" type="number" id="total" readonly>
+                    <input class="input form-control" type="number" id="total" readonly disabled>
                 </div>
                 <div class="col-12 col-md-4">
                     Diferencia:
-                    <input class="input form-control" type="number" id="diferencia" readonly>
+                    <input class="input form-control" type="number" id="diferencia" readonly disabled>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-12 col-md-3">
                     Monto
-                    <input class="input form-control" type="number" id="monto">
+                    <input class="input form-control" type="text" id="monto">
                 </div>
             </div>
         </div>
@@ -165,9 +165,7 @@
 
 
     <!--Sripts-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    
     <script src="script.js"></script>
 </body>
 
