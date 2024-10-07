@@ -118,6 +118,10 @@ a :hover {
     cursor: pointer;
 }
 
+.btn-forgot{
+    background-color: none;
+}
+
 
 /*Aplica al título de cada gasto agregado*/
 p {
@@ -135,6 +139,11 @@ fieldset {
     border-radius: 0.5rem;
     text-align: center;
     margin-bottom: 10px;
+}
+
+/*Tamaño del título del fieldset para evitar que se vea feo en pantallas chicas*/
+legend{
+    font-size:medium;
 }
 
 /*Ajuste del fieldset a pantallas chicas*/
@@ -160,7 +169,6 @@ fieldset {
     display: block;
     margin: 0 auto;
     width: 200px;
-
 }
 
 /*ancho del boton mostrar pass*/
@@ -168,12 +176,14 @@ fieldset {
     height: 30px;
 }
 
-
-.input-group .btn {
-    width: 90px; /* Define el ancho del botón según tus necesidades */
+/*ancho input rut*/
+.inputRut, .inputPass{
+    width: 100%;
 }
 
-
+.login{
+    width: 400px;
+}
 
 
 /*Botones pagina inicio*/
