@@ -262,10 +262,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //IF en rendición
-    /*btn agregar gasto*/
+    
     if (path.includes('rendicion.html')) {
         var btn_ingresar = document.getElementById('btn_ingresar');
         var datosIngresados = document.getElementById('datosIngresados');
+       /*btn agregar gasto*/
         if (btn_ingresar && datosIngresados) {
             let rowCounter = 0; // Contador para hacer únicos los name
             let visibleGastos = 0; // Contador para gastos visibles
@@ -405,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             function updateDiferencia() {
-                var solicitado = parseInt(document.getElementById('solicitado').value.replace(/\./g, ''), 10) || 0;
+                var solicitado = parseInt(document.getElementById('inputSolicitado').value.replace(/\./g, ''), 10) || 0;
                 var total = parseInt(document.getElementById('total').value.replace(/\./g, ''), 10) || 0;
                 var diferencia = solicitado - total;  // Calcular la diferencia
 
@@ -441,12 +442,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Obtén todas las filas dinámicas
                 var rows = document.querySelectorAll('#datosIngresados .row');
+                console.log("N° Filas: ");
                 var modalBody = document.querySelector('.modal-body');
 
                 // Limpia el contenido del modal
                 modalBody.innerHTML = '';
 
-                var solicitado = document.getElementById('solicitado').value;
+                var solicitado = document.getElementById('inputSolicitado').value;
                 var diferencia = document.getElementById('diferencia').value;
 
                 // Recorre cada fila y extrae la información de los inputs
