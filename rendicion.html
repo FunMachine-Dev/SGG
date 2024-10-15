@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/estilo.css">
 
-    <title>Solicitud de rendición - Sistema de rendición de gastos - IASD</title>
+    <title>Rendición de gastos - Sistema de rendición de gastos - IASD</title>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
     <!--formulario ingreso de datos-->
     <fieldset>
         <!--la class float deja el legend sobre el margen del fieldset-->
-        <legend class="float-none w-auto px-2">Ingrese los datos solicitados</legend>
+        <legend class="float-none w-auto px-2">Ingrese el monto solicitado</legend>
 
         <!--cuadro solicitado/total/diferencia-->
         <div class="container-md text-center info-solicitado">
@@ -47,18 +47,26 @@
                     Monto solicitado:
                     <input class="input form-control" type="text" id="inputSolicitado">
                 </div>
-                <div class="col-12 col-md-4">
-                    Total:
-                    <input class="input form-control" type="number" id="total" readonly disabled>
+                
+                <hr>
+                
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        Total gastado:
+                        <input class="input form-control" type="number" id="total" readonly disabled>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        Diferencia rendición:
+                        <input class="input form-control" type="number" id="diferencia" readonly disabled>
+                    </div>
                 </div>
-                <div class="col-12 col-md-4">
-                    Diferencia:
-                    <input class="input form-control" type="number" id="diferencia" readonly disabled>
-                </div>
+            
             </div>
-        </div>
-
-        <!--Ingreso de datos-->
+    </fieldset>
+    
+    <!--Ingreso de datos-->
+    <fieldset>
+        <legend class="float-none w-auto px-2">Ingrese los gastos realizados</legend>
         <div class="container-md text-center info-rendicion">
             <div class="row">
                 <div class="col-12 col-md-3">
@@ -136,7 +144,7 @@
                     correcta, haga click en <strong>"Enviar rendición"</strong>.
                     <div class="modal-footer-btns">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Editar</button>
-                        <a href="enviar-reembolso.html">
+                        <a href="enviar-rendicion.html">
                             <button type="button" class="btn btn-primary">Enviar rendición</button>
                         </a>
                     </div>
@@ -165,7 +173,7 @@
 
 
     <!--Sripts-->
-    
+
     <script src="script.js"></script>
 </body>
 

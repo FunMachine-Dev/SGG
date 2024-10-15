@@ -262,7 +262,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //IF en rendición
-    
     if (path.includes('rendicion.html')) {
         var btn_ingresar = document.getElementById('btn_ingresar');
         var datosIngresados = document.getElementById('datosIngresados');

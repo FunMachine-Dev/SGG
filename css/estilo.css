@@ -171,6 +171,14 @@ legend{
     width: 200px;
 }
 
+/*Espacio inferior campo "monto solicitado" y "total gastado"*/
+#inputSolicitado{
+    margin-bottom: 20px;
+}
+#total{
+    margin-bottom: 10px;
+}
+
 /*ancho del boton mostrar pass*/
 .btn-outline-secondary {
     height: 30px;
@@ -185,6 +193,10 @@ legend{
     width: 400px;
 }
 
+/*margen interior modal recuperar pass*/
+.mailRecuperar{
+padding-left: 10px;
+}
 
 /*Botones pagina inicio*/
 .botones_inicio {
@@ -198,6 +210,7 @@ legend{
     background-color: #F07B7D;
     position: fixed;
     right: 0;
+    bottom: 5px;
     width: 150px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
@@ -385,6 +398,28 @@ input[type="number"] {
     gap: 8px;
 }
 
+
+/*estilo para pantallas chicas icono+titulo pantalla enviado*/ 
+@media (max-width:768px) {
+    .iconEnviado {
+        width: 60px;
+        height: 60px;
+        margin-left: 30px;
+    }
+
+    .titulo{
+       font-size:x-small;
+       display: flex;
+       align-items: center;
+       justify-content: center; /* Centra horizontalmente el contenido */
+       gap: 0;
+    }
+    .titulo h1 {
+        margin-left: 0px; 
+        padding: 0;
+    }
+}
+
 /*modal: Mensaje de confirmación antes de enviar*/
 .modal-footer {
     display: inline-block;
@@ -418,3 +453,17 @@ input[type="number"] {
     border-radius: 50px;
     color: beige;
 }
+
+/*Efecto entrada modal's*/
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.modal.show .modal-dialog {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+
