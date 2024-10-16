@@ -46,22 +46,28 @@ document.addEventListener('DOMContentLoaded', function () {
     if (path.includes('reembolso.html')) {
         var btn_ingresar = document.getElementById('btn_ingresar');
         var datosIngresados = document.getElementById('datosIngresados');
-        
+
         /*btn agregar gasto*/
         if (btn_ingresar && datosIngresados) {
             let rowCounter = 0; // Contador para hacer únicos los name
             let visibleGastos = 0; // Contador para gastos visibles
             var container = document.createElement('fieldset');
+            container.id = 'datosIngresadosHijo';
+            container.style.display = 'none'; // Inicialmente oculto
 
+            // Agregar el contenedor al DOM
+            datosIngresados.appendChild(container);
+
+            // Agregar filas al hacer click en el botón 'agregar gasto'
             btn_ingresar.addEventListener('click', function () {
-
-                container.id = 'datosIngresadosHijo';
-                datosIngresados.appendChild(container);
-
 
                 // Incrementa el contador por cada fila nueva
                 rowCounter++;
                 visibleGastos++;
+
+                // Mostrar el fieldset cuando hay filas
+                container.style.display = 'block'; // Mostrar el fieldset
+                container.disabled = false;  // Asegurarse de que esté habilitado
 
                 // Obtiene los valores
                 var fecha = document.getElementById('fecha').value;
@@ -100,6 +106,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     visibleGastos--;
                     updateTotal();
                     updateTituloGasto(); // Actualiza los totales después de eliminar la fila
+
+                    // Si no quedan filas, oculta el fieldset
+                    if (visibleGastos === 0) {
+                        container.style.display = 'none';  // Oculta el fieldset
+                    }
                 });
 
                 // Insertar el conteo de gastos y el  botón de eliminar antes del primer campo de texto
@@ -137,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         input.type = 'number'; // Último campo como tipo number para monto
                         input.addEventListener('input', function () {
                             updateTotal();
-                            
+
                         }); // Agregar evento input para actualizar total
                     } else {
                         input.type = 'text'; // Campos intermedios como tipo text
@@ -227,9 +238,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                             // Agrega la información de la fila al modal
                             var rowInfo = `
-                                    <p><strong>Gasto ${index+1}:</strong></p>
+                                    <p><strong>Gasto ${index + 1}:</strong></p>
                                     <ul>
-                                        <li>Fecha: ${fecha}</li>
+                                        <li>Fecha: ${formatoFecha(fecha)}</li>
                                         <li>N° Bol/Fact: ${numBoleta}</li>
                                         <li>Descripción: ${descripcion}</li>
                                         <li>Monto: $${monto}</li>
@@ -252,11 +263,22 @@ document.addEventListener('DOMContentLoaded', function () {
                     `;
                 modalBody.innerHTML += totalInfo;
 
-                // Función para formatear el número con separadores de miles
+                /* Función para formatear el número con separadores de miles
                 function formatNumber(value) {
                     return + value.replace(/\D/g, '') // Elimina caracteres no numéricos
                         .replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Agrega separadores de miles
+                }*/
+
+                function formatoFecha(value) {
+                    const fechaNacimiento = new Date(value);
+                    // Ajustar manualmente para evitar la discrepancia de un día
+                    fechaNacimiento.setMinutes(fechaNacimiento.getMinutes() + fechaNacimiento.getTimezoneOffset());
+                    const dia = String(fechaNacimiento.getDate()).padStart(2, '0');
+                    const mes = String(fechaNacimiento.getMonth() + 1).padStart(2, '0');
+                    const año = fechaNacimiento.getFullYear();
+                    return `${dia}-${mes}-${año}`;
                 }
+
             });
         }
     }
@@ -265,21 +287,27 @@ document.addEventListener('DOMContentLoaded', function () {
     if (path.includes('rendicion.html')) {
         var btn_ingresar = document.getElementById('btn_ingresar');
         var datosIngresados = document.getElementById('datosIngresados');
-       /*btn agregar gasto*/
+        /*btn agregar gasto*/
         if (btn_ingresar && datosIngresados) {
             let rowCounter = 0; // Contador para hacer únicos los name
             let visibleGastos = 0; // Contador para gastos visibles
             var container = document.createElement('fieldset');
+            container.id = 'datosIngresadosHijo';
+            container.style.display = 'none'; // Inicialmente oculto
 
+            // Agregar el contenedor al DOM
+            datosIngresados.appendChild(container);
+
+            // Agregar filas al hacer click en el botón 'agregar gasto'
             btn_ingresar.addEventListener('click', function () {
-
-                container.id = 'datosIngresadosHijo';
-                datosIngresados.appendChild(container);
-
 
                 // Incrementa el contador por cada fila nueva
                 rowCounter++;
                 visibleGastos++;
+
+                // Mostrar el fieldset cuando hay filas
+                container.style.display = 'block'; // Mostrar el fieldset
+                container.disabled = false;  // Asegurarse de que esté habilitado
 
                 // Obtiene los valores
                 var fecha = document.getElementById('fecha').value;
@@ -319,6 +347,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     updateTotal();
                     updateDiferencia();
                     updateTituloGasto(); // Actualiza los totales después de eliminar la fila
+
+                    // Si no quedan filas, oculta el fieldset
+                    if (visibleGastos === 0) {
+                        container.style.display = 'none';  // Oculta el fieldset
+                    }
+
                 });
 
                 // Insertar el conteo de gastos y el  botón de eliminar antes del primer campo de texto
@@ -466,7 +500,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         var rowInfo = `
                                     <p><strong>Gasto ${index + 1}:</strong></p>
                                     <ul>
-                                        <li>Fecha: ${fecha}</li>
+                                        <li>Fecha: ${formatoFecha(fecha)}</li>
                                         <li>N° Bol/Fact: ${numBoleta}</li>
                                         <li>Descripción: ${descripcion}</li>
                                         <li>Monto: $${monto}</li>
@@ -485,20 +519,54 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Agrega el total al final del contenido del modal
                 var totalInfo = `
                         <div class="mt-3">
-                        <strong>Total rendición:</strong> $${formatNumber(total)}<br>
-                        <strong>Monto solicitado:</strong> $${formatNumber(solicitado)}<br>
-                        <strong>Diferencia:</strong> $${formatNumber(diferencia)}
+                        <strong>Total gastado:</strong> $${total}<br>
+                        <strong>Monto solicitado:</strong> $${solicitado}<br>
+                        <strong>Diferencia:</strong> $${diferencia}
                         </div>
                     `;
                 modalBody.innerHTML += totalInfo;
 
-                // Función para formatear el número con separadores de miles
+                /* Función para formatear el número con separadores de miles
                 function formatNumber(value) {
                     return + value.replace(/\D/g, '') // Elimina caracteres no numéricos
                         .replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Agrega separadores de miles
+                }*/
+
+                //Formatea la fecha en el modal
+                function formatoFecha(value) {
+                    const fechaNacimiento = new Date(value);
+                    // Ajustar manualmente para evitar la discrepancia de un día
+                    fechaNacimiento.setMinutes(fechaNacimiento.getMinutes() + fechaNacimiento.getTimezoneOffset());
+                    const dia = String(fechaNacimiento.getDate()).padStart(2, '0');
+                    const mes = String(fechaNacimiento.getMonth() + 1).padStart(2, '0');
+                    const año = fechaNacimiento.getFullYear();
+                    return `${dia}-${mes}-${año}`;
                 }
             });
         }
     }
+
+    /*Acorta el label del input N° Boleta/Factura en pantallas medianas*/
+    function updateLabelText() {
+        var label = document.getElementById('labelBolFact');
+        var label2 = document.getElementById('labelDiferencia');
+        if (window.innerWidth <= 882 && window.innerWidth >= 768) {
+            label.textContent = 'N° bol/fact'; // Cambiar el texto para pantallas entre 768px y 882px
+        } else {
+            label.textContent = 'N° boleta/factura'; // Texto por defecto
+        }
+        /*Acorta label Diferencia rendición*/
+        if (window.innerWidth <= 882 && window.innerWidth >= 768) {
+            label2.textContent = 'Diferencia'; // Cambiar el texto para pantallas entre 768px y 882px
+        } else {
+            label2.textContent = 'Diferencia rendición'; // Texto por defecto
+        }
+    }
+
+    // Llamar a la función cuando la página se carga
+    window.addEventListener('load', updateLabelText);
+
+    // Llamar a la función cada vez que se cambia el tamaño de la ventana
+    window.addEventListener('resize', updateLabelText);
 
 });

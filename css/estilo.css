@@ -167,9 +167,18 @@ legend{
     border-radius: 30px;
     height: 30px;
     display: block;
-    margin: 0 auto;
-    width: 200px;
+    margin: 0 auto; 
 }
+
+/*ancho fijo de los input en pantallas chicas*/
+@media (max-width:768px) {
+    .input {
+        width: 200px;
+    }
+}
+
+
+
 
 /*Espacio inferior campo "monto solicitado" y "total gastado"*/
 #inputSolicitado{

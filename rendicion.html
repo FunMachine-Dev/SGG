@@ -44,7 +44,7 @@
         <div class="container-md text-center info-solicitado">
             <div class="row">
                 <div class="col-12 col-md-4">
-                    Monto solicitado:
+                    Monto solicitado
                     <input class="input form-control" type="text" id="inputSolicitado">
                 </div>
                 
@@ -52,11 +52,11 @@
                 
                 <div class="row">
                     <div class="col-12 col-md-4">
-                        Total gastado:
+                        Total gastado
                         <input class="input form-control" type="number" id="total" readonly disabled>
                     </div>
                     <div class="col-12 col-md-4">
-                        Diferencia rendición:
+                        <label id="labelDiferencia" for="diferencia">Diferencia rendición</label>
                         <input class="input form-control" type="number" id="diferencia" readonly disabled>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <input class="input form-control" type="date" id="fecha">
                 </div>
                 <div class="col-12 col-md-3">
-                    N° boleta/factura
+                    <label id="labelBolFact" for="num_boleta">N° boleta/factura</label>
                     <input class="input form-control" type="text" id="num_boleta">
                 </div>
                 <div class="col-12 col-md-3">
@@ -139,8 +139,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    Si necesita editar la información proporcionada, haga click en <strong>"Editar"</strong> y
-                    modifique directamente la información en las filas correspondientes. Si la información está
+                    Si necesita corregir la información de algún gasto ingresado, haga click en <strong>"Editar"</strong> y solo debe
+                    modificar los datos en las filas correspondientes. Ésta se actualizará automáticamente. Si la información está
                     correcta, haga click en <strong>"Enviar rendición"</strong>.
                     <div class="modal-footer-btns">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Editar</button>

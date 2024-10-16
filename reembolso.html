@@ -46,7 +46,7 @@
                     <input class="input form-control" type="date" id="fecha">
                 </div>
                 <div class="col-12 col-md-3">
-                    N° de boleta o factura
+                    <label id="labelBolFact" for="num_boleta">N° boleta/factura</label>
                     <input class="input form-control" type="text" id="num_boleta">
                 </div>
                 <div class="col-12 col-md-3">
@@ -89,67 +89,69 @@
     <div id="datosIngresados"></div>
 
 
-            <!--botón "finalizar"-->
-        <div class="btn-finalizar" id="submitBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <div class="txt-btn-finalizar" role="button" id="liveAlertBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20"
-                    height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+    <!--botón "finalizar"-->
+    <div class="btn-finalizar" id="submitBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <div class="txt-btn-finalizar" role="button" id="liveAlertBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20"
+                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                <path d="M9 12l2 2l4 -4" />
+            </svg>
+            Finalizar
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Comprobar información</h1>
+                </div>
+                <div class="modal-body">
+                    <!-- Aquí se llenará con la información de las filas -->
+                    <div id="modalBodyContent">
+                        <!-- Contenido dinámico va aquí -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    Si necesita corregir la información de algún gasto ingresado, haga click en
+                    <strong>"Editar"</strong> y solo debe
+                    modificar los datos en las filas correspondientes. Ésta se actualizará automáticamente. Si la
+                    información está
+                    correcta, haga click en <strong>"Solicitar reembolso"</strong>.
+                    <div class="modal-footer-btns">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Editar</button>
+                        <a href="enviar-reembolso.html">
+                            <button type="button" class="btn btn-primary">Solicitar reembolso</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--botón "volver"-->
+    <div class="btn-volver">
+        <a href="inicio.html">
+            <div class="txt-btn-volver" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-arrow-left"
+                    width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
                     stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                    <path d="M9 12l2 2l4 -4" />
+                    <path d="M12 21a9 9 0 1 0 0 -18a9 9 0 0 0 0 18" />
+                    <path d="M8 12l4 4" />
+                    <path d="M8 12h8" />
+                    <path d="M12 8l-4 4" />
                 </svg>
-                Finalizar
+                Volver
             </div>
-        </div>
+        </a>
+    </div>
 
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Comprobar información</h1>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Aquí se llenará con la información de las filas -->
-                        <div id="modalBodyContent">
-                            <!-- Contenido dinámico va aquí -->
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        Si necesita editar la información proporcionada, haga click en <strong>"Editar"</strong> y
-                        modifique directamente la información en las filas correspondientes. Si la información está
-                        correcta, haga click en <strong>"Solicitar reembolso"</strong>.
-                        <div class="modal-footer-btns">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Editar</button>
-                            <a href="enviar-reembolso.html">
-                                <button type="button" class="btn btn-primary">Solicitar reembolso</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--botón "volver"-->
-        <div class="btn-volver">
-            <a href="inicio.html">
-                <div class="txt-btn-volver" role="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-arrow-left"
-                        width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M12 21a9 9 0 1 0 0 -18a9 9 0 0 0 0 18" />
-                        <path d="M8 12l4 4" />
-                        <path d="M8 12h8" />
-                        <path d="M12 8l-4 4" />
-                    </svg>
-                    Volver
-                </div>
-            </a>
-        </div>
-    
 
     <!--Sripts-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
