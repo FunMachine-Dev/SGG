@@ -287,6 +287,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (path.includes('rendicion.html')) {
         var btn_ingresar = document.getElementById('btn_ingresar');
         var datosIngresados = document.getElementById('datosIngresados');
+        var calculos = document.querySelector('.calculos'); //div donde estan los calculos 
+        calculos.classList.remove('visible'); // Oculta el div al iniciar
         /*btn agregar gasto*/
         if (btn_ingresar && datosIngresados) {
             let rowCounter = 0; // Contador para hacer únicos los name
@@ -304,7 +306,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Incrementa el contador por cada fila nueva
                 rowCounter++;
                 visibleGastos++;
-
+              
+                calculos.classList.add('visible');
+                
                 // Mostrar el fieldset cuando hay filas
                 container.style.display = 'block'; // Mostrar el fieldset
                 container.disabled = false;  // Asegurarse de que esté habilitado
@@ -315,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 var descripcion = document.getElementById('descripcion').value;
                 var monto = document.getElementById('monto').value;
 
-                // Crear un elemento <hr> y título
+                // Crear una linea <hr> y título
                 var line = document.createElement('hr');
                 var tituloGasto = document.createElement('p');
                 tituloGasto.className = 'titulo-gasto';
@@ -351,6 +355,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Si no quedan filas, oculta el fieldset
                     if (visibleGastos === 0) {
                         container.style.display = 'none';  // Oculta el fieldset
+                        calculos.classList.remove('visible'); // Oculta el div calculos con fade
                     }
 
                 });
@@ -409,9 +414,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 }
 
-                // Agregar la fila al contenedor
-                container.appendChild(row);
-                container.appendChild(line);
+                //inserción de linea de gasto
+                //condiciones para agregar lineas de separacion para los row que contienen los gastos
+                if (visibleGastos === 1) {
+                    container.appendChild(row); // Solo agregar row
+                } else if (visibleGastos === 2) {
+                    var line2 = document.createElement('hr');
+                    container.appendChild(line2); // Agregar line antes de row
+                    container.appendChild(row);   // Agregar row
+                    container.appendChild(line);   // Agregar line debajo de row
+                } else if (visibleGastos > 2) {
+                    container.appendChild(row);   // Agregar row
+                    container.appendChild(line);   // Agregar line debajo de row
+                }
+                
+                
 
                 // Borrar los datos de origen
                 document.getElementById('fecha').value = '';

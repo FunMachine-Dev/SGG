@@ -36,6 +36,20 @@
         </div>
     </div>
     <!--formulario ingreso de datos-->
+    
+    <div class="container-md text-center calculos">
+        <div class="row">
+            <div class="col-12 col-md-3">
+                Total gastado
+                <input class="input form-control" type="number" id="total" readonly disabled>
+            </div>
+            <div class="col-12 col-md-3">
+                <label id="labelDiferencia" for="diferencia">Diferencia rendición</label>
+                <input class="input form-control" type="number" id="diferencia" readonly disabled>
+            </div>
+        </div>
+    </div>
+    
     <fieldset>
         <!--la class float deja el legend sobre el margen del fieldset-->
         <legend class="float-none w-auto px-2">Ingrese el monto solicitado</legend>
@@ -47,20 +61,6 @@
                     Monto solicitado
                     <input class="input form-control" type="text" id="inputSolicitado">
                 </div>
-                
-                <hr>
-                
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        Total gastado
-                        <input class="input form-control" type="number" id="total" readonly disabled>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <label id="labelDiferencia" for="diferencia">Diferencia rendición</label>
-                        <input class="input form-control" type="number" id="diferencia" readonly disabled>
-                    </div>
-                </div>
-            
             </div>
     </fieldset>
     
