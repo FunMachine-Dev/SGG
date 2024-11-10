@@ -291,6 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
         calculos.classList.remove('visible'); // Oculta el div al iniciar
         /*btn agregar gasto*/
         if (btn_ingresar && datosIngresados) {
+
             let rowCounter = 0; // Contador para hacer únicos los name
             let visibleGastos = 0; // Contador para gastos visibles
             var container = document.createElement('fieldset');
@@ -300,145 +301,165 @@ document.addEventListener('DOMContentLoaded', function () {
             // Agregar el contenedor al DOM
             datosIngresados.appendChild(container);
 
+            //script con validacion
+            document.getElementById('btn_ingresar').addEventListener('click', function () {
+                var forms = document.querySelectorAll('.needs-validation');
+                var allValid = true;
+            
+                forms.forEach(function (form) {
+                    if (!form.checkValidity()) {
+                        form.classList.add('was-validated');
+                        allValid = false;
+                        alert('Ingrese todos los datos')
+                    }
+                });
+                if (allValid) {
+                    // Incrementa el contador por cada fila nueva
+                    rowCounter++;
+                    visibleGastos++;
+
+                    calculos.classList.add('visible');
+
+                    // Mostrar el fieldset cuando hay filas
+                    container.style.display = 'block'; // Mostrar el fieldset
+                    container.disabled = false;  // Asegurarse de que esté habilitado
+
+                    // Obtiene los valores
+                    var fecha = document.getElementById('fecha').value;
+                    var numBoleta = document.getElementById('num_boleta').value;
+                    var descripcion = document.getElementById('descripcion').value;
+                    var monto = document.getElementById('monto').value;
+
+                    // Crear una linea <hr> y título
+                    var line = document.createElement('hr');
+                    var tituloGasto = document.createElement('p');
+                    tituloGasto.className = 'titulo-gasto';
+                    tituloGasto.textContent = `Gasto ${visibleGastos}`;
+
+                    // Crear una nueva fila
+                    var row = document.createElement('div');
+                    row.className = 'row';
+
+                    // Crear el botón de eliminar
+                    var deleteButton = document.createElement('div');
+                    deleteButton.className = 'btn-delete';
+                    deleteButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M4 7l16 0" />
+                    <path d="M10 11l0 6" />
+                    <path d="M14 11l0 6" />
+                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                    </svg> 
+                    <p class="delete">Eliminar gasto</p>`;
+
+                    //acción del boton borrar
+                    deleteButton.addEventListener('click', function () {
+                        row.remove();
+                        tituloGasto.remove();
+                        line.remove();
+                        visibleGastos--;
+                        updateTotal();
+                        updateDiferencia();
+                        updateTituloGasto(); // Actualiza los totales después de eliminar la fila
+
+                        // Si no quedan filas, oculta el fieldset
+                        if (visibleGastos === 0) {
+                            container.style.display = 'none';  // Oculta el fieldset
+                            calculos.classList.remove('visible'); // Oculta el div calculos con fade
+                        }
+
+                    });
+
+                    // Insertar el conteo de gastos y el  botón de eliminar antes del primer campo de texto
+                    // Crear un contenedor para el título y el botón de eliminar
+                    var gastosDelete = document.createElement('div');
+                    gastosDelete.className = 'tituloGastos';
+                    gastosDelete.appendChild(tituloGasto);
+                    gastosDelete.appendChild(deleteButton);
+                    row.appendChild(gastosDelete);
+
+
+                    // Crear 4 columnas, cada una con un campo de texto
+                    var titles = ["Fecha", "N° boleta/factura", "Descripción", "Monto"];
+                    var values = [fecha, numBoleta, descripcion, monto];
+                    var names = [`fecha_${visibleGastos}`, `num_boleta_${visibleGastos}`, `descripcion_${visibleGastos}`, `monto_${visibleGastos}`]; // Nombres únicos
+
+                    for (var i = 0; i < values.length; i++) {
+                        var col = document.createElement('div');
+                        col.className = 'col-12 col-md-3';
+
+                        // Crear un título (label) para cada campo de texto
+                        var label = document.createElement('label');
+                        label.textContent = titles[i]; // Establecer el texto del título
+                        label.htmlFor = names[i]; // Asociar la etiqueta con el campo de texto
+
+                        //Crear campo de texto
+                        var input = document.createElement('input');
+                        input.className = 'input form-control agregar';
+                        input.name = names[i]; // Asignar name único
+
+                        // Establecer el tipo de entrada según la posición en el array
+                        if (i === 0) {
+                            input.type = 'date'; // Primer campo como tipo date
+                        } else if (i === values.length - 1) {
+                            input.type = 'number'; // Último campo como tipo number para monto
+                            input.addEventListener('input', function () {
+                                updateTotal();
+                                updateDiferencia();
+                            }); // Agregar evento input para actualizar total
+                        } else {
+                            input.type = 'text'; // Campos intermedios como tipo text
+                        }
+
+                        // Formatear monto con separadores de miles
+                        if (i === values.length - 1) {
+                            input.value = formatNumber(values[i]);
+                        } else {
+                            input.value = values[i];
+                        }
+
+                        col.appendChild(label);
+                        col.appendChild(input);
+                        row.appendChild(col);
+
+                    }
+
+                    //inserción de linea de gasto
+                    //condiciones para agregar lineas de separacion para los row que contienen los gastos
+                    if (visibleGastos === 1) {
+                        container.appendChild(row); // Solo agregar row
+                    } else if (visibleGastos === 2) {
+                        var line2 = document.createElement('hr');
+                        container.appendChild(line2); // Agregar line antes de row
+                        container.appendChild(row);   // Agregar row
+                        container.appendChild(line);   // Agregar line debajo de row
+                    } else if (visibleGastos > 2) {
+                        container.appendChild(row);   // Agregar row
+                        container.appendChild(line);   // Agregar line debajo de row
+                    }
+
+
+
+                    // Borrar los datos de origen
+                    document.getElementById('fecha').value = '';
+                    document.getElementById('num_boleta').value = '';
+                    document.getElementById('descripcion').value = '';
+                    document.getElementById('monto').value = '';
+
+                    // Actualizar total
+                    updateTotal();
+                    updateDiferencia();
+
+                }
+            });
+
+
+
             // Agregar filas al hacer click en el botón 'agregar gasto'
             btn_ingresar.addEventListener('click', function () {
 
-                // Incrementa el contador por cada fila nueva
-                rowCounter++;
-                visibleGastos++;
-              
-                calculos.classList.add('visible');
-                
-                // Mostrar el fieldset cuando hay filas
-                container.style.display = 'block'; // Mostrar el fieldset
-                container.disabled = false;  // Asegurarse de que esté habilitado
 
-                // Obtiene los valores
-                var fecha = document.getElementById('fecha').value;
-                var numBoleta = document.getElementById('num_boleta').value;
-                var descripcion = document.getElementById('descripcion').value;
-                var monto = document.getElementById('monto').value;
-
-                // Crear una linea <hr> y título
-                var line = document.createElement('hr');
-                var tituloGasto = document.createElement('p');
-                tituloGasto.className = 'titulo-gasto';
-                tituloGasto.textContent = `Gasto ${visibleGastos}`;
-
-                // Crear una nueva fila
-                var row = document.createElement('div');
-                row.className = 'row';
-
-                // Crear el botón de eliminar
-                var deleteButton = document.createElement('div');
-                deleteButton.className = 'btn-delete';
-                deleteButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <path d="M4 7l16 0" />
-                <path d="M10 11l0 6" />
-                <path d="M14 11l0 6" />
-                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                </svg> 
-                <p class="delete">Eliminar gasto</p>`;
-
-                //acción del boton borrar
-                deleteButton.addEventListener('click', function () {
-                    row.remove();
-                    tituloGasto.remove();
-                    line.remove();
-                    visibleGastos--;
-                    updateTotal();
-                    updateDiferencia();
-                    updateTituloGasto(); // Actualiza los totales después de eliminar la fila
-
-                    // Si no quedan filas, oculta el fieldset
-                    if (visibleGastos === 0) {
-                        container.style.display = 'none';  // Oculta el fieldset
-                        calculos.classList.remove('visible'); // Oculta el div calculos con fade
-                    }
-
-                });
-
-                // Insertar el conteo de gastos y el  botón de eliminar antes del primer campo de texto
-                // Crear un contenedor para el título y el botón de eliminar
-                var gastosDelete = document.createElement('div');
-                gastosDelete.className = 'tituloGastos';
-                gastosDelete.appendChild(tituloGasto);
-                gastosDelete.appendChild(deleteButton);
-                row.appendChild(gastosDelete);
-
-
-                // Crear 4 columnas, cada una con un campo de texto
-                var titles = ["Fecha", "N° boleta/factura", "Descripción", "Monto"];
-                var values = [fecha, numBoleta, descripcion, monto];
-                var names = [`fecha_${visibleGastos}`, `num_boleta_${visibleGastos}`, `descripcion_${visibleGastos}`, `monto_${visibleGastos}`]; // Nombres únicos
-
-                for (var i = 0; i < values.length; i++) {
-                    var col = document.createElement('div');
-                    col.className = 'col-12 col-md-3';
-
-                    // Crear un título (label) para cada campo de texto
-                    var label = document.createElement('label');
-                    label.textContent = titles[i]; // Establecer el texto del título
-                    label.htmlFor = names[i]; // Asociar la etiqueta con el campo de texto
-
-                    //Crear campo de texto
-                    var input = document.createElement('input');
-                    input.className = 'input form-control agregar';
-                    input.name = names[i]; // Asignar name único
-
-                    // Establecer el tipo de entrada según la posición en el array
-                    if (i === 0) {
-                        input.type = 'date'; // Primer campo como tipo date
-                    } else if (i === values.length - 1) {
-                        input.type = 'number'; // Último campo como tipo number para monto
-                        input.addEventListener('input', function () {
-                            updateTotal();
-                            updateDiferencia();
-                        }); // Agregar evento input para actualizar total
-                    } else {
-                        input.type = 'text'; // Campos intermedios como tipo text
-                    }
-
-                    // Formatear monto con separadores de miles
-                    if (i === values.length - 1) {
-                        input.value = formatNumber(values[i]);
-                    } else {
-                        input.value = values[i];
-                    }
-
-                    col.appendChild(label);
-                    col.appendChild(input);
-                    row.appendChild(col);
-
-                }
-
-                //inserción de linea de gasto
-                //condiciones para agregar lineas de separacion para los row que contienen los gastos
-                if (visibleGastos === 1) {
-                    container.appendChild(row); // Solo agregar row
-                } else if (visibleGastos === 2) {
-                    var line2 = document.createElement('hr');
-                    container.appendChild(line2); // Agregar line antes de row
-                    container.appendChild(row);   // Agregar row
-                    container.appendChild(line);   // Agregar line debajo de row
-                } else if (visibleGastos > 2) {
-                    container.appendChild(row);   // Agregar row
-                    container.appendChild(line);   // Agregar line debajo de row
-                }
-                
-                
-
-                // Borrar los datos de origen
-                document.getElementById('fecha').value = '';
-                document.getElementById('num_boleta').value = '';
-                document.getElementById('descripcion').value = '';
-                document.getElementById('monto').value = '';
-
-                // Actualizar total
-                updateTotal();
-                updateDiferencia();
             });
 
             // Función para actualizar los títulos de gastos

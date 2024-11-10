@@ -36,7 +36,7 @@
         </div>
     </div>
     <!--formulario ingreso de datos-->
-    
+
     <div class="container-md text-center calculos">
         <div class="row">
             <div class="col-12 col-md-3">
@@ -49,50 +49,48 @@
             </div>
         </div>
     </div>
-    
+
     <fieldset>
         <!--la class float deja el legend sobre el margen del fieldset-->
         <legend class="float-none w-auto px-2">Ingrese el monto solicitado</legend>
 
-        <!--cuadro solicitado/total/diferencia-->
-        <div class="container-md text-center info-solicitado">
-            <div class="row">
-                <div class="col-12 col-md-4">
-                    Monto solicitado
-                    <input class="input form-control" type="text" id="inputSolicitado">
-                </div>
+        <!--cuadro solicitado-->
+        <form class="row g-3 needs-validation" novalidate>
+            <div class="col-md-4">
+                <label for="inputSolicitado" class="form-label">Monto solicitado</label>
+                <input class="input form-control" type="number" id="inputSolicitado" required>
             </div>
+        </form>
     </fieldset>
-    
+
     <!--Ingreso de datos-->
     <fieldset>
         <legend class="float-none w-auto px-2">Ingrese los gastos realizados</legend>
-        <div class="container-md text-center info-rendicion">
-            <div class="row">
-                <div class="col-12 col-md-3">
-                    Fecha
-                    <input class="input form-control" type="date" id="fecha">
-                </div>
-                <div class="col-12 col-md-3">
-                    <label id="labelBolFact" for="num_boleta">N° boleta/factura</label>
-                    <input class="input form-control" type="text" id="num_boleta">
-                </div>
-                <div class="col-12 col-md-3">
-                    Descripción
-                    <input class="input form-control" type="text" id="descripcion">
-                </div>
-                <div class="col-12 col-md-3">
-                    Monto
-                    <input class="input form-control" type="text" id="monto">
-                </div>
+
+        <form class="row g-3 needs-validation" novalidate>
+            <div class="col-12 col-md-3">
+                <label for="fecha" class="form-label">Fecha</label>
+                <input class="input form-control" type="date" id="fecha" required>
             </div>
-        </div>
+            <div class="col-12 col-md-3">
+                <label id="labelBolFact" for="num_boleta" class="form-label">N° boleta/factura</label>
+                <input class="input form-control" type="text" id="num_boleta" required>
+            </div>
+            <div class="col-12 col-md-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <input class="input form-control" type="text" id="descripcion" required>
+            </div>
+            <div class="col-12 col-md-3">
+                <label for="monto" class="form-label">Monto</label>
+                <input class="input form-control" type="text" id="monto" required>
+            </div>
+        </form>
     </fieldset>
 
 
 
     <!--botón "ingresar gasto"-->
-    <div class="btn_ingresar" role="button" id="btn_ingresar">
+    <button type="button" class="btn_ingresar" id="btn_ingresar">
         <div class="txt-btn-ingresar">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="20"
                 height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
@@ -104,7 +102,8 @@
             </svg>
             Ingresar gasto
         </div>
-    </div>
+    </button>
+
 
     <!--div donde aparecen los datos ingresados-->
     <div id="datosIngresados"></div>
@@ -139,8 +138,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    Si necesita corregir la información de algún gasto ingresado, haga click en <strong>"Editar"</strong> y solo debe
-                    modificar los datos en las filas correspondientes. Ésta se actualizará automáticamente. Si la información está
+                    Si necesita corregir la información de algún gasto ingresado, haga click en
+                    <strong>"Editar"</strong> y solo debe
+                    modificar los datos en las filas correspondientes. Ésta se actualizará automáticamente. Si la
+                    información está
                     correcta, haga click en <strong>"Enviar rendición"</strong>.
                     <div class="modal-footer-btns">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Editar</button>
@@ -175,6 +176,7 @@
     <!--Sripts-->
 
     <script src="script.js"></script>
+
 </body>
 
 </html>
