@@ -39,39 +39,39 @@
     <fieldset>
         <legend class="float-none w-auto px-2">Ingrese los datos solicitados</legend>
         <!--esta class permite que el legend se ubique encima del margen superior-->
-        <div class="container-md text-center info-reembolso">
-            <div class="row">
+        <form class="row g-3 needs-validation" novalidate>
+            
                 <div class="col-12 col-md-3">
-                    Fecha
-                    <input class="input form-control" type="date" id="fecha">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input class="input form-control" type="date" id="fecha" required>
                 </div>
                 <div class="col-12 col-md-3">
-                    <label id="labelBolFact" for="num_boleta">N° boleta/factura</label>
-                    <input class="input form-control" type="text" id="num_boleta">
+                    <label id="labelBolFact" for="num_boleta" class="form-label">N° boleta/factura</label>
+                    <input class="input form-control" type="text" id="num_boleta" required>
                 </div>
                 <div class="col-12 col-md-3">
-                    Descripción
-                    <input class="input form-control" type="text" id="descripcion">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <input class="input form-control" type="text" id="descripcion" required>
                 </div>
                 <div class="col-12 col-md-3">
-                    Monto
-                    <input class="input form-control" type="number" id="monto">
+                    <label for="monto" class="form-label">Monto</label>
+                    <input class="input form-control" type="number" id="monto" required>
                 </div>
-            </div>
+            
             <div class="row">
                 <div class="col-12 col-md-4">
-                    Total a reembolsar
+                    <label for="total" class="form-label">Total a reembolsar</label>
                     <input class="input form-control" type="number" id="total" disabled>
                 </div>
             </div>
 
-        </div>
+        </form>
     </fieldset>
 
 
 
     <!--botón "ingresar gasto"-->
-    <div class="btn_ingresar" role="button" id="btn_ingresar">
+    <button type="button" class="btn_ingresar" id="btn_ingresar">
         <div class="txt-btn-ingresar">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="20"
                 height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
@@ -83,7 +83,7 @@
             </svg>
             Ingresar gasto
         </div>
-    </div>
+    </button>
 
     <!--div donde aparecen los datos ingresados-->
     <div id="datosIngresados"></div>

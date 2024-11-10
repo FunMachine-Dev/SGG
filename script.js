@@ -59,7 +59,18 @@ document.addEventListener('DOMContentLoaded', function () {
             datosIngresados.appendChild(container);
 
             // Agregar filas al hacer click en el botón 'agregar gasto'
-            btn_ingresar.addEventListener('click', function () {
+            document.getElementById('btn_ingresar').addEventListener('click', function () {
+                var forms = document.querySelectorAll('.needs-validation');
+                var allValid = true;
+            
+                forms.forEach(function (form) {
+                    if (!form.checkValidity()) {
+                        form.classList.add('was-validated');
+                        allValid = false;
+                        alert('Ingrese todos los datos')
+                    }
+                });
+                if (allValid) {
 
                 // Incrementa el contador por cada fila nueva
                 rowCounter++;
@@ -179,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Actualizar total
                 updateTotal();
-
+            }
             });
 
             // Función para actualizar los títulos de gastos
