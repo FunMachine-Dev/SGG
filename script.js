@@ -316,12 +316,16 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('btn_ingresar').addEventListener('click', function () {
                 var forms = document.querySelectorAll('.needs-validation');
                 var allValid = true;
-            
+                var alertShown = false; // Variable para controlar si la alerta ya se mostró
+               
                 forms.forEach(function (form) {
                     if (!form.checkValidity()) {
                         form.classList.add('was-validated');
                         allValid = false;
-                        alert('Ingrese todos los datos')
+                        if (!alertShown) {
+                            alert('Ingrese todos los datos');
+                            alertShown = true; // Marcar que la alerta ya se mostró
+                        }
                     }
                 });
                 if (allValid) {
