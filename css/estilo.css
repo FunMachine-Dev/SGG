@@ -483,10 +483,10 @@ input[type="number"] {
     --bs-btn-border-color: var(--color1);
     --bs-btn-active-bg: var(--color1);
     --bs-btn-active-border-color: var(--color1);
-    --bs-btn-hover-color: beige;
-    --bs-btn-active-color: beige;
+    --bs-btn-hover-color: white;
+    --bs-btn-active-color: white;
     border-radius: 50px;
-    color: beige;
+    color: white;
 }
 
 /*Efecto entrada modal's*/

@@ -58,19 +58,19 @@ document.addEventListener('DOMContentLoaded', function () {
             // Agregar el contenedor al DOM
             datosIngresados.appendChild(container);
 
-            // Agregar filas al hacer click en el botón 'agregar gasto'
+            // Agregar gasto al hacer click en el botón 'agregar gasto'
             document.getElementById('btn_ingresar').addEventListener('click', function () {
-                var forms = document.querySelectorAll('.needs-validation');
+                var forms = document.querySelectorAll('.needs-validation');//selecciona los forms para validacion
                 var allValid = true;
             
-                forms.forEach(function (form) {
+                forms.forEach(function (form) { //recorre los form para validacion
                     if (!form.checkValidity()) {
                         form.classList.add('was-validated');
                         allValid = false;
                         alert('Ingrese todos los datos')
                     }
                 });
-                if (allValid) {
+                if (allValid) { //acciones para forms validos
 
                 // Incrementa el contador por cada fila nueva
                 rowCounter++;
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             });
 
-            // Función para actualizar los títulos de gastos
+            // Función para actualizar los títulos de gastos cuando se elimina uno
             function updateTituloGasto() {
                 const titles = container.querySelectorAll('.titulo-gasto');
                 titles.forEach((title, index) => {
@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (path.includes('rendicion.html')) {
         var btn_ingresar = document.getElementById('btn_ingresar');
         var datosIngresados = document.getElementById('datosIngresados');
-        var calculos = document.querySelector('.calculos'); //div donde estan los calculos 
+        var calculos = document.querySelector('.calculos'); //div flotante donde estan los calculos 
         calculos.classList.remove('visible'); // Oculta el div al iniciar
         /*btn agregar gasto*/
         if (btn_ingresar && datosIngresados) {
@@ -309,10 +309,12 @@ document.addEventListener('DOMContentLoaded', function () {
             container.id = 'datosIngresadosHijo';
             container.style.display = 'none'; // Inicialmente oculto
 
+            
+
             // Agregar el contenedor al DOM
             datosIngresados.appendChild(container);
 
-            //script con validacion
+            //validacion
             document.getElementById('btn_ingresar').addEventListener('click', function () {
                 var forms = document.querySelectorAll('.needs-validation');
                 var allValid = true;
@@ -422,7 +424,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             input.addEventListener('input', function () {
                                 updateTotal();
                                 updateDiferencia();
-                            }); // Agregar evento input para actualizar total
+                            }); // Evento input que actualiza cálculos
                         } else {
                             input.type = 'text'; // Campos intermedios como tipo text
                         }
@@ -465,19 +467,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Actualizar total
                     updateTotal();
                     updateDiferencia();
-
                 }
             });
 
-
-
-            // Agregar filas al hacer click en el botón 'agregar gasto'
-            btn_ingresar.addEventListener('click', function () {
-
-
+            //actualiza la diferencia si se modifica el solicitado
+            let inputSolicitado = document.getElementById('inputSolicitado');
+            inputSolicitado.addEventListener('input', function () {
+                updateDiferencia();
             });
 
-            // Función para actualizar los títulos de gastos
+            // Función para actualizar los títulos de gastos cuando se elimina uno
             function updateTituloGasto() {
                 const titles = container.querySelectorAll('.titulo-gasto');
                 titles.forEach((title, index) => {
@@ -518,6 +517,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 document.getElementById('total').value = formatNumber(total.toString());
             }
+
+            
         }
 
 
@@ -566,24 +567,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
 
                 // Obtén el valor del campo 'total'
-                updateTotal();
+                
                 var total = document.getElementById('total').value;
 
                 // Agrega el total al final del contenido del modal
                 var totalInfo = `
                         <div class="mt-3">
                         <strong>Total gastado:</strong> $${total}<br>
-                        <strong>Monto solicitado:</strong> $${solicitado}<br>
+                        <strong>Monto solicitado:</strong> $${formatNumber(solicitado)}<br>
                         <strong>Diferencia:</strong> $${diferencia}
                         </div>
                     `;
                 modalBody.innerHTML += totalInfo;
-
-                /* Función para formatear el número con separadores de miles
-                function formatNumber(value) {
-                    return + value.replace(/\D/g, '') // Elimina caracteres no numéricos
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Agrega separadores de miles
-                }*/
 
                 //Formatea la fecha en el modal
                 function formatoFecha(value) {
