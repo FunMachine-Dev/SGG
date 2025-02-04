@@ -36,12 +36,12 @@
         </div>
     </div>
     <!--sección login-->
-    <div class="container text-center login">
+    <form id="login" class="container text-center login">
         <!-- Fila del campo de nombre de usuario -->
         <div class="row justify-content-center">
             <div class="col-10 "> 
                 <label for="usuario" class="form-label">Ingrese su RUT</label>
-                <input class="input inputRut form-control" type="text" id="rutUsuario" placeholder="Sin puntos ni guión">
+                <input class="input inputRut form-control" type="text" id="rutUsuario" name="rutUsuario" placeholder="Sin puntos ni guión">
             </div>
         </div>
 
@@ -50,16 +50,20 @@
             <div class="col-10"> 
                 <label for="pass" class="form-label">Ingrese su contraseña</label>
                 <div class="input-group flex-nowrap">
-                    <input type="password" class="input inputPass form-control w-100" id="pass" aria-describedby="togglePassword">
+                    <input type="password" class="input inputPass form-control w-100" id="pass" name="pass" aria-describedby="togglePassword">
                     <button class="btn btn-outline-secondary d-flex align-items-center" type="button"
                         id="togglePassword">Mostrar</button>
                 </div>
             </div>
         </div>
         <br>
-        <a href="/inicio.html" class="btn btn-primary " role="button">INGRESAR</a>
+        <!--<a href="/inicio.html" class="btn btn-primary " role="button">INGRESAR</a>-->
+        <button type="submit" class="btn btn-primary w-10">INGRESAR</button>
 
-    </div>
+        <p id="responseMessage" class="text-danger text-center"></p>
+
+
+    </form>
 
     <div class="forgot">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock" width="32" height="32"

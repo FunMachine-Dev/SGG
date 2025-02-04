@@ -1,0 +1,13 @@
+# Ignorar la carpeta node_modules
+node_modules/
+
+# Ignorar archivos de entorno (sensibles)
+.env
+
+# Ignorar archivos de configuración local
+.DS_Store
+.vscode/
+
+# Ignorar logs y archivos temporales
+*.log
+*.tmp

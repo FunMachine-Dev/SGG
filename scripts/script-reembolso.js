@@ -73,20 +73,20 @@ document.addEventListener('DOMContentLoaded', function () {
                     var monto = row.querySelector('input[name^="monto_"]').value;
                     monto = parseInt(monto.replace(/\./g, ''), 10) || 0;
                     total -= monto;
-                
+
                     row.remove();
                     tituloGasto.remove();
                     line.remove();
                     visibleGastos--;
-                
+
                     document.getElementById('total').value = formatNumber(total.toString());
-                
+
                     updateTituloGasto();
                     if (visibleGastos === 0) {
                         container.style.display = 'none';
                     }
                 });
-                
+
 
                 // Insertar el conteo de gastos y el  botón de eliminar antes del primer campo de texto
                 // Crear un contenedor para el título y el botón de eliminar
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Establecer el tipo de entrada según la posición en el array
                     if (i === 0) {
                         input.type = 'date'; // Primer campo como tipo date
-                        
+
                     } else if (i === values.length - 1) {
                         input.type = 'text'; // Último campo como tipo number para monto
 
@@ -128,11 +128,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         input.addEventListener('input', function () {
                             updateTotal();
                         });*/
-                    
+
                     } else {
                         input.type = 'text'; // Campos intermedios como tipo text
                     }
-                    
+
 
                     //Formatear monto con separadores de miles los montos menos la fecha
                     if (i === values.length - 1) {
@@ -209,6 +209,18 @@ document.addEventListener('DOMContentLoaded', function () {
             // Limpia el contenido del modal
             modalBody.innerHTML = '';
 
+            // Recupera el nombre del usuario de localStorage
+            var userName = localStorage.getItem('userName');
+            var userId = localStorage.getItem('userId');
+            // Agrega el saludo con el nombre del usuario al modal
+            if (userName) {
+                var welcomeMessage = `<p><strong>Solicitud de reembolso, ${userName}, rut: ${userId}</strong></p>`;
+                modalBody.innerHTML += welcomeMessage;
+            } else {
+                var welcomeMessage = `<p><strong>Solicitud de reembolso,</strong></p>`;
+                modalBody.innerHTML += welcomeMessage;
+            }
+
             // Recorre cada fila y extrae la información de los inputs
             rows.forEach(function (row, index) {
                 // Omitir la primera fila (índice 0)
@@ -235,8 +247,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
+
+
+
             // Obtén el valor del campo 'total'
-            updateTotal();
+            //updateTotal(); eliminar!!
             var total = document.getElementById('total').value;
 
             // Agrega el total al final del contenido del modal

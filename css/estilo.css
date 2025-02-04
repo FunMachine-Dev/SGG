@@ -240,7 +240,7 @@ padding-left: 10px;
 }
 
 /*boton logout*/
-.logout {
+.logout, .btn-logout {
     background-color: #F07B7D;
     position: fixed;
     right: 0;
@@ -250,9 +250,11 @@ padding-left: 10px;
     border-bottom-left-radius: 20px;
     direction: rtl;
     cursor: pointer;
+    border: none;
+
 }
 
-.logout:hover {
+.logout, .btn-logout:hover {
     position: fixed;
     right: 0;
     width: 150px;

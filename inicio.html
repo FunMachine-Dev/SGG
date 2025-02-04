@@ -22,6 +22,11 @@
     <div class="adorno2">.</div>
     <div class="adorno3">.</div>
 
+    <div id="welcomeMessage">
+        Bienvenido, <span id="userName"></span> 
+        rut: <span id="userId"></span>
+    </div>
+
     <!--ID pag inicio-->
     <div class="id-pag">
         <div class="txt-id-pag">
@@ -36,6 +41,10 @@
             Inicio
         </div>
     </div>
+
+   
+    
+
     <!--botones-->
     <div class="container text-center">
         <h1>¿Qué desea realizar?</h1>
@@ -44,24 +53,28 @@
             <a href="reembolso.html"><button type="button" class="btn">REEMBOLSO</button></a>
         </div>
     </div>
-<br>
-<br>
-<br>
+    <br>
+    <br>
+    <br>
     <!--LOGOUT-->
+
     <div class="logout">
-        <a href="index.html"> <div class="txt-logout">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="20" height="20"
-                viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
-                stroke-linejoin="round">
+        <button id="logoutButton" class="btn-logout txt-logout">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="20"
+                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
                 <path d="M9 12h12l-3 -3" />
                 <path d="M18 15l3 -3" />
             </svg>
-            Cerrar sesión</div></a>
-        
-        </div>
+            Cerrar sesión
+        </button>
+    </div>
     
+
+  
+
 
 
 
@@ -72,7 +85,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="/scripts/script_inicio.js"></script>
 </body>
 
 </html>
