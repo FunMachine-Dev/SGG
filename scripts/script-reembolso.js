@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var btn_ingresar = document.getElementById('btn_ingresar');
     var datosIngresados = document.getElementById('datosIngresados');
+    document.getElementById('submitBtn').style.display = 'none';
+
 
 
 
@@ -34,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Incrementa el contador por cada fila nueva
                 rowCounter++;
                 visibleGastos++;
+                document.getElementById('submitBtn').style.display = 'block';// Mostrar el botón de finalizar
 
                 // Mostrar el fieldset cuando hay filas
                 container.style.display = 'block'; // Mostrar el fieldset
@@ -72,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 deleteButton.addEventListener('click', function () {
                     var monto = row.querySelector('input[name^="monto_"]').value;
                     monto = parseInt(monto.replace(/\./g, ''), 10) || 0;
-                    total -= monto;
+                    total -= monto; //resta los montos ingresados al total
 
                     row.remove();
                     tituloGasto.remove();
@@ -83,7 +86,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     updateTituloGasto();
                     if (visibleGastos === 0) {
-                        container.style.display = 'none';
+                        container.style.display = 'none';//oculta el fieldset si no hay gastos
+                        document.getElementById('submitBtn').style.display = 'none';//oculta el botón de finalizar si no hay gastos
                     }
                 });
 
@@ -193,6 +197,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('total').value = formatNumber(total.toString());
         }
 
+        
+
 
     }
 
@@ -203,7 +209,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Obtén todas las filas dinámicas
             var rows = document.querySelectorAll('#datosIngresados .row');
-            console.log(`Se han encontrado ${rows.length} filas en el contenedor.`);
             var modalBody = document.querySelector('.modal-body');
 
             // Limpia el contenido del modal
@@ -246,9 +251,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 }
             });
-
-
-
 
             // Obtén el valor del campo 'total'
             //updateTotal(); eliminar!!
