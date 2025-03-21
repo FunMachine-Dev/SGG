@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var container = document.createElement('fieldset');
         container.id = 'datosIngresadosHijo';
         container.style.display = 'none'; // Inicialmente oculto
-        
+
         // Agregar el contenedor al DOM
         datosIngresados.appendChild(container);
 
@@ -229,16 +229,14 @@ document.addEventListener('DOMContentLoaded', function () {
             // Actualiza el valor del campo 'total' con el nuevo total formateado
             document.getElementById('total').value = formatNumber(total.toString());
         }
-
-
     }
+
 
 
     //botón finalizar
     if (submitBtn) {
         document.getElementById('submitBtn').addEventListener('click', function (event) {
             event.preventDefault(); // Evita acciones predeterminadas para pruebas
-            console.log("Solicitado:", inputSolicitadosolicitado, "Diferencia:", diferencia, "Total:", total);
 
             // Obtén todas las filas dinámicas
             var rows = document.querySelectorAll('#datosIngresados .row');
@@ -252,10 +250,10 @@ document.addEventListener('DOMContentLoaded', function () {
             var userId = localStorage.getItem('userId');
             // Agrega el saludo con el nombre del usuario al modal
             if (userName) {
-                var welcomeMessage = `<p><strong>Solicitud de reembolso, ${userName}, rut: ${userId}</strong></p>`;
+                var welcomeMessage = `<p><strong>Rendición de gastos, ${userName}, rut: ${userId}</strong></p>`;
                 modalBody.innerHTML += welcomeMessage;
             } else {
-                var welcomeMessage = `<p><strong>Solicitud de reembolso,</strong></p>`;
+                var welcomeMessage = `<p><strong>Rendición de gastos,</strong></p>`;
                 modalBody.innerHTML += welcomeMessage;
             }
 
@@ -286,14 +284,14 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             // Obtén el valor del campo 'total'
-
             var total = document.getElementById('total').value;
-
+            var diferencia = document.getElementById('diferencia').value;
+            var solicitado = document.getElementById('inputSolicitado').value;
             // Agrega el total al final del contenido del modal
             var totalInfo = `
                         <div class="mt-3">
                         <strong>Total gastado:</strong> $${total}<br>
-                        <strong>Monto solicitado:</strong> $${formatNumber(inputSolicitado)}<br>
+                        <strong>Monto solicitado:</strong> $${formatNumber(solicitado)}<br>
                         <strong>Diferencia:</strong> $${diferencia}
                         </div>
                     `;
