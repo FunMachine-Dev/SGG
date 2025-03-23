@@ -243,6 +243,13 @@ document.addEventListener('DOMContentLoaded', function () {
             // Obtén todas las filas dinámicas
             var rows = document.querySelectorAll('#datosIngresados .row');
             var modalBody = document.querySelector('.modal-body');
+            // Obtener la fecha actual en formato DD/MM/AAAA
+            var fechaActual = new Date();
+            var fechaFormateada = fechaActual.toLocaleDateString('es-CL', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
 
             // Limpia el contenido del modal
             modalBody.innerHTML = '';
@@ -252,12 +259,16 @@ document.addEventListener('DOMContentLoaded', function () {
             var userId = localStorage.getItem('userId');
             // Agrega el saludo con el nombre del usuario al modal
             if (userName) {
-                var welcomeMessage = `<p><strong>Rendición de gastos, ${userName}, rut: ${userId}</strong></p>`;
+                var welcomeMessage = `<p><strong>Rendición de gastos,</strong> ${userName}, <strong> rut: </strong> ${userId}</p>`;
                 modalBody.innerHTML += welcomeMessage;
             } else {
                 var welcomeMessage = `<p><strong>Rendición de gastos,</strong></p>`;
                 modalBody.innerHTML += welcomeMessage;
             }
+
+            // Agregar la fecha de solicitud al modal
+            var fechaSolicitud = `<p><strong>Fecha de solicitud:</strong> ${fechaFormateada}</p>`;
+            modalBody.innerHTML += fechaSolicitud;
 
             // Recorre cada fila y extrae la información de los inputs
             rows.forEach(function (row, index) {
