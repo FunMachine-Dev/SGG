@@ -120,6 +120,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     var label = document.createElement('label');
                     label.textContent = titles[i]; // Establecer el texto del título
                     label.htmlFor = names[i]; // Asociar la etiqueta con el campo de texto
+                    // Si es el segundo campo de texto, asignar class "num_bol", de lo contrario, seguir con la lógica original
+                    label.classList.add(i === 1 ? "num-bol" : `label-${names[i]}`);
 
                     //Crear campo de texto
                     var input = document.createElement('input');
@@ -314,16 +316,19 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateLabelText() {
         var label = document.getElementById('labelBolFact');
         var label2 = document.getElementById('labelDiferencia');
+        var labels3 = document.querySelectorAll('.num-bol'); // Selecciona por clase
         if (window.innerWidth <= 882 && window.innerWidth >= 768) {
             label.textContent = 'N° bol/fact'; // Cambiar el texto para pantallas entre 768px y 882px
+            label2.textContent = 'Diferencia';
+            labels3.forEach(label => {
+                label.textContent = 'N° bol/fact'; // Aplica el cambio a cada elemento con la clase "num-bol"
+            });
         } else {
             label.textContent = 'N° boleta/factura'; // Texto por defecto
-        }
-        /*Acorta label Diferencia rendición*/
-        if (window.innerWidth <= 882 && window.innerWidth >= 768) {
-            label2.textContent = 'Diferencia'; // Cambiar el texto para pantallas entre 768px y 882px
-        } else {
-            label2.textContent = 'Diferencia rendición'; // Texto por defecto
+            label2.textContent = 'Diferencia rendición';
+            labels3.forEach(label => {
+                label.textContent = 'N° boleta/factura';
+            });
         }
     }
 
