@@ -5,8 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('submitBtn').style.display = 'none';
 
 
-
-
     /*btn agregar gasto*/
     if (btn_ingresar && datosIngresados) {
 
@@ -164,6 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Actualizar total
                 updateTotal(monto);
+                mostrarPopup();
             }
         });
 
@@ -197,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('total').value = formatNumber(total.toString());
         }
 
-        
+
 
 
     }
@@ -226,16 +225,16 @@ document.addEventListener('DOMContentLoaded', function () {
             var userId = localStorage.getItem('userId');
             // Agrega el saludo con el nombre del usuario al modal
             if (userName) {
-                var welcomeMessage = `<p><strong>Rendición de gastos,</strong> ${userName}, <strong> rut: </strong> ${userId}</p>`;
+                var welcomeMessage = `<p><strong>Solicitud de reembolso,</strong> ${userName}, <strong> rut: </strong> ${userId}</p>`;
                 modalBody.innerHTML += welcomeMessage;
             } else {
                 var welcomeMessage = `<p><strong>Rendición de gastos,</strong></p>`;
                 modalBody.innerHTML += welcomeMessage;
             }
 
-             // Agregar la fecha de solicitud al modal
-             var fechaSolicitud = `<p><strong>Fecha de solicitud:</strong> ${fechaFormateada}</p>`;
-             modalBody.innerHTML += fechaSolicitud;
+            // Agregar la fecha de solicitud al modal
+            var fechaSolicitud = `<p><strong>Fecha de solicitud:</strong> ${fechaFormateada}</p>`;
+            modalBody.innerHTML += fechaSolicitud;
 
             // Recorre cada fila y extrae la información de los inputs
             rows.forEach(function (row, index) {
@@ -294,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    /*Acorta el label del input N° Boleta/Factura en pantallas medianas*/
+    //Acorta el label del input N° Boleta/Factura en pantallas medianas
     function updateLabelText() {
         var label = document.getElementById('labelBolFact');
         var label2 = document.getElementById('labelDiferencia');
@@ -303,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             label.textContent = 'N° boleta/factura'; // Texto por defecto
         }
-        /*Acorta label Diferencia rendición*/
+        //Acorta label Diferencia rendición
         if (window.innerWidth <= 882 && window.innerWidth >= 768) {
             label2.textContent = 'Diferencia'; // Cambiar el texto para pantallas entre 768px y 882px
         } else {
@@ -317,4 +316,63 @@ document.addEventListener('DOMContentLoaded', function () {
     // Llamar a la función cada vez que se cambia el tamaño de la ventana
     window.addEventListener('resize', updateLabelText);
 
+
+    //sendMail
+    document.getElementById('enviar').addEventListener('click', function () {
+        const modalContent = document.querySelector('.modal-body')?.innerHTML || '<p>No hay contenido en el modal</p>';
+
+        fetch('http://localhost:5000/send-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content: modalContent })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Correo enviado:', data);
+                window.location.href = 'enviar-reembolso.html';
+            })
+            .catch(error => {
+                console.error('Error al enviar el correo:', error);
+            });
+    });
+
+    /*function mostrarPopupMail() {
+        var popup = document.getElementById("popupMail");
+
+        // Hacer visible el popup con fade in
+        popup.style.display = "block";
+        setTimeout(function () {
+            popup.style.opacity = "1"; // Hacerlo completamente visible
+        }, 10); // Timeout pequeño para asegurar el cambio de estilo
+
+        // Desaparecer el popup con fade out después de 1 segundo
+        setTimeout(function () {
+            popup.style.opacity = "0"; // Hacerlo transparente
+            setTimeout(function () {
+                popup.style.display = "none"; // Ocultar completamente el popup después del fade
+            }, 500); // Tiempo para esperar que el fade-out termine
+        }, 1000); // Tiempo que permanecerá visible
+    }*/
+
+    //muestra popup al agregar gasto
+    function mostrarPopup() {
+        var popup = document.getElementById("popup");
+
+        // Hacer visible el popup con fade in
+        popup.style.display = "block";
+        setTimeout(function () {
+            popup.style.opacity = "1"; // Hacerlo completamente visible
+        }, 10); // Timeout pequeño para asegurar el cambio de estilo
+
+        // Desaparecer el popup con fade out después de 1 segundo
+        setTimeout(function () {
+            popup.style.opacity = "0"; // Hacerlo transparente
+            setTimeout(function () {
+                popup.style.display = "none"; // Ocultar completamente el popup después del fade
+            }, 500); // Tiempo para esperar que el fade-out termine
+        }, 1000); // Tiempo que permanecerá visible
+    }
+
 });
+
+

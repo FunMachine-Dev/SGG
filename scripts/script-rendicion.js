@@ -182,6 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Actualizar total
                 updateTotal(monto);
                 updateDiferencia();
+                mostrarPopup();
             }
         });
 
@@ -342,6 +343,33 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
+
+    function mostrarPopup() {
+        var popup = document.getElementById("popup");
+    
+        // Hacer visible el popup con fade in
+        popup.style.display = "block";
+        setTimeout(function() {
+            popup.style.opacity = "1"; // Hacerlo completamente visible
+        }, 10); // Timeout pequeño para asegurar el cambio de estilo
+    
+        // Desaparecer el popup con fade out después de 1 segundo
+        setTimeout(function() {
+            popup.style.opacity = "0"; // Hacerlo transparente
+            setTimeout(function() {
+                popup.style.display = "none"; // Ocultar completamente el popup después del fade
+            }, 500); // Tiempo para esperar que el fade-out termine
+        }, 1000); // Tiempo que permanecerá visible
+    }
+    
+    // Llamar a mostrarPopup() cuando se inserte un gasto
+    document.getElementById("btn_ingresar").addEventListener("click", function () {
+        // Código para insertar el gasto...
+        mostrarPopup();
+    });
+    
+    
+    
 
     // Llamar a la función cuando la página se carga
     window.addEventListener('load', updateLabelText);

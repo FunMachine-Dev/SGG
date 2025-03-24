@@ -9,9 +9,11 @@ document.getElementById("logoutButton").addEventListener("click", function () {
 window.onload = function() {
     const userName = localStorage.getItem('userName'); 
     const userId = localStorage.getItem('userId'); // Recuperamos el nombre del usuario
+    const userMail = localStorage.getItem('userMail'); // Recuperamos el correo del usuario
     if (userName) {
         document.getElementById('userName').innerText = userName;  // Asignamos solo el nombre al span
         document.getElementById('userId').innerText = userId;
+        document.getElementById('userMail').innerText = userMail; // Asignamos el correo al span
     } else {
         window.location.href = "index.html"; // Redirigimos al login si no hay nombre guardado
     }

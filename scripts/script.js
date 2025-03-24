@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Guardar el nombre del usuario en localStorage
             localStorage.setItem('userName', data.user.nombre);
             localStorage.setItem('userId', data.user.id_usuario); // Guardar el id_usuario
+            localStorage.setItem('userMail', data.user.correo); // Guardar el correo del usuario
             window.location.href = "/inicio.html"; // Redirigir solo si el login es exitoso
         } else {
             document.getElementById("responseMessage").innerText = data.message;

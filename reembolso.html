@@ -40,24 +40,24 @@
         <legend class="float-none w-auto px-2">Ingrese los datos solicitados</legend>
         <!--esta class permite que el legend se ubique encima del margen superior-->
         <form class="row g-3 needs-validation" novalidate>
-            
-                <div class="col-12 col-md-3">
-                    <label for="fecha" class="form-label">Fecha</label>
-                    <input class="input form-control" type="date" id="fecha" required>
-                </div>
-                <div class="col-12 col-md-3">
-                    <label id="labelBolFact" for="num_boleta" class="form-label">N° boleta/factura</label>
-                    <input class="input form-control" type="text" id="num_boleta" required>
-                </div>
-                <div class="col-12 col-md-3">
-                    <label for="descripcion" class="form-label">Descripción</label>
-                    <input class="input form-control" type="text" id="descripcion" required>
-                </div>
-                <div class="col-12 col-md-3">
-                    <label for="monto" class="form-label">Monto</label>
-                    <input class="input form-control" type="number" id="monto" required>
-                </div>
-            
+
+            <div class="col-12 col-md-3">
+                <label for="fecha" class="form-label">Fecha</label>
+                <input class="input form-control" type="date" id="fecha" required>
+            </div>
+            <div class="col-12 col-md-3">
+                <label id="labelBolFact" for="num_boleta" class="form-label">N° boleta/factura</label>
+                <input class="input form-control" type="text" id="num_boleta" required>
+            </div>
+            <div class="col-12 col-md-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <input class="input form-control" type="text" id="descripcion" required>
+            </div>
+            <div class="col-12 col-md-3">
+                <label for="monto" class="form-label">Monto</label>
+                <input class="input form-control" type="number" id="monto" required>
+            </div>
+
             <div class="row">
                 <div class="col-12 col-md-4">
                     <label for="total" class="form-label">Total a reembolsar</label>
@@ -103,6 +103,41 @@
         </div>
     </div>
 
+    <!-- Popup confirmación mail -->
+    <div id="popupMail" style="
+    display: none;
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50; 
+    color: white; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+    z-index: 1000;
+    opacity: 0; 
+    transition: opacity 0.5s ease-in-out;">
+        Correo enviado correctamente
+    </div>
+
+    <!--Popup ingreso gasto-->
+    <div id="popup" style="
+    display: none;
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50; 
+    color: white; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+    z-index: 1000;
+    opacity: 0; 
+    transition: opacity 0.5s ease-in-out;">
+        Gasto ingresado correctamente
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,7 +146,7 @@
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Comprobar información</h1>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="modalReembolso">
                     <!-- Aquí se llenará con la información de las filas -->
                     <div id="modalBodyContent">
                         <!-- Contenido dinámico va aquí -->
@@ -119,14 +154,15 @@
                 </div>
                 <div class="modal-footer">
                     Si necesita corregir la información de algún gasto ingresado, haga click en
-                    <strong>"Editar"</strong> y elimine el gasto ingresado que esté incorrecto y luego vuélvalo a ingresar. Si la
+                    <strong>"Editar"</strong> y elimine el gasto ingresado que esté incorrecto y luego vuélvalo a
+                    ingresar. Si la
                     información está
                     correcta, haga click en <strong>"Solicitar reembolso"</strong>.
                     <div class="modal-footer-btns">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Editar</button>
-                        <a href="enviar-reembolso.html">
-                            <button type="button" class="btn btn-primary">Solicitar reembolso</button>
-                        </a>
+
+                        <button id="enviar" type="button" class="btn btn-primary">Solicitar reembolso</button>
+
                     </div>
                 </div>
             </div>
