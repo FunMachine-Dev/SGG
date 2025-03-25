@@ -317,24 +317,29 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', updateLabelText);
 
 
-    //sendMail
-    document.getElementById('enviar').addEventListener('click', function () {
-        const modalContent = document.querySelector('.modal-body')?.innerHTML || '<p>No hay contenido en el modal</p>';
+    // sendMail
+document.getElementById('enviar').addEventListener('click', function () {
+    const modalContent = document.querySelector('.modal-body')?.innerHTML || '<p>No hay contenido en el modal</p>';
+    const userCorreo = localStorage.getItem('userCorreo'); // Recuperar el correo del usuario
 
-        fetch('http://localhost:5000/send-email', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ content: modalContent })
+    fetch('http://localhost:5000/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            content: modalContent,
+            userCorreo: userCorreo // Incluir el correo en la solicitud
         })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Correo enviado:', data);
-                window.location.href = 'enviar-reembolso.html';
-            })
-            .catch(error => {
-                console.error('Error al enviar el correo:', error);
-            });
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Correo enviado:', data);
+        //window.location.href = 'enviar-reembolso.html';
+    })
+    .catch(error => {
+        console.error('Error al enviar el correo:', error);
     });
+
+
 
     /*function mostrarPopupMail() {
         var popup = document.getElementById("popupMail");
@@ -375,4 +380,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-
+});

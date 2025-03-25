@@ -33,15 +33,16 @@ connection.connect((err) => {
 const { sendEmail } = require('./scripts/sendMail.js');
 
 app.post('/send-email', async (req, res) => {
-    const { content } = req.body;
+  const { content, userCorreo } = req.body;
 
-    try {
-        const response = await sendEmail('d.arriagadacampos@gmail.com', 'Información del Modal', content);
-        res.json({ message: 'Correo enviado', response });
-        window.location.href = 'enviar-reembolso.html';
-    } catch (error) {
-        res.status(500).json({ error: 'Error al enviar el correo', details: error });
-    }
+  try {
+    const destinatarios = ['d.arriagadacampos@gmail.com', userCorreo]; // Correos separados por coma
+    const response = await sendEmail(destinatarios, 'Información del Modal', content);
+    res.json({ message: 'Correo enviado', response });
+    window.location.href = 'enviar-reembolso.html';
+  } catch (error) {
+    res.status(500).json({ error: 'Error al enviar el correo', details: error });
+  }
 });
 
 // Ruta de prueba para login
@@ -49,27 +50,28 @@ app.post('/login', (req, res) => {
   const { id_usuario, pass } = req.body;
 
   if (!id_usuario || !pass) {
-      return res.status(400).json({ message: 'Rut y contraseña son requeridos' });
+    return res.status(400).json({ message: 'Rut y contraseña son requeridos' });
   }
 
   const query = 'SELECT * FROM usuario WHERE id_usuario = ? AND pass = ?';
   connection.query(query, [id_usuario, pass], (err, results) => {
-      if (err) {
-          return res.status(500).json({ message: 'Error en la base de datos' });
-      }
+    if (err) {
+      return res.status(500).json({ message: 'Error en la base de datos' });
+    }
 
-      if (results.length > 0) {
-          const user = results[0];
-          return res.status(200).json({
-              message: 'Login exitoso',
-              user: {
-                  id_usuario: user.id_usuario,
-                  nombre: user.nombre
-              }
-          });
-      } else {
-          return res.status(401).json({ message: 'Credenciales incorrectas' });
-      }
+    if (results.length > 0) {
+      const user = results[0];
+      return res.status(200).json({
+        message: 'Login exitoso',
+        user: {
+          id_usuario: user.id_usuario,
+          nombre: user.nombre,
+          correo: user.correo
+        }
+      });
+    } else {
+      return res.status(401).json({ message: 'Credenciales incorrectas' });
+    }
   });
 });
 
