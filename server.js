@@ -33,13 +33,12 @@ connection.connect((err) => {
 const { sendEmail } = require('./scripts/sendMail.js');
 
 app.post('/send-email', async (req, res) => {
-  const { content, userCorreo } = req.body;
+  const { content, userCorreo, subject } = req.body;
 
   try {
     const destinatarios = ['d.arriagadacampos@gmail.com', userCorreo]; // Correos separados por coma
-    const response = await sendEmail(destinatarios, 'Información del Modal', content);
+    const response = await sendEmail(destinatarios, subject, content);
     res.json({ message: 'Correo enviado', response });
-    window.location.href = 'enviar-reembolso.html';
   } catch (error) {
     res.status(500).json({ error: 'Error al enviar el correo', details: error });
   }

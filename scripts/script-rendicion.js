@@ -346,7 +346,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function mostrarPopup() {
         var popup = document.getElementById("popup");
-    
         // Hacer visible el popup con fade in
         popup.style.display = "block";
         setTimeout(function() {
@@ -361,14 +360,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 500); // Tiempo para esperar que el fade-out termine
         }, 1000); // Tiempo que permanecerá visible
     }
-    
-    // Llamar a mostrarPopup() cuando se inserte un gasto
-    document.getElementById("btn_ingresar").addEventListener("click", function () {
-        // Código para insertar el gasto...
-        mostrarPopup();
-    });
-    
-    
+
+
     
 
     // Llamar a la función cuando la página se carga
@@ -376,5 +369,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Llamar a la función cada vez que se cambia el tamaño de la ventana
     window.addEventListener('resize', updateLabelText);
+
+    // sendMail
+    document.getElementById('enviar').addEventListener('click', function () {
+        const modalContent = document.querySelector('.modal-body')?.innerHTML || '<p>No hay contenido en el modal</p>';
+        const userCorreo = localStorage.getItem('userCorreo'); // Recuperar el correo del usuario
+        const subject = document.querySelector('.txt-id-pag')?.childNodes[2]?.textContent.trim() || 'Sin asunto'; //extrae el nombre de la página para enviarla como subject
+
+        fetch('http://localhost:5000/send-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                content: modalContent,
+                userCorreo: userCorreo, // Incluir el correo del usuario en la solicitud
+                subject: subject // Incluir el asunto en la solicitud
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Correo enviado:', data);
+                window.location.href = 'enviar-rendicion.html';
+            })
+            .catch(error => {
+                console.error('Error al enviar el correo:', error);
+            });
+        });
+            
 
 });

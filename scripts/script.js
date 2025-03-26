@@ -1,9 +1,6 @@
 
 
 document.addEventListener('DOMContentLoaded', function () {
-
-
-
     // Iniciar sesión
     document.getElementById("login").addEventListener("submit", async function (event) {
         event.preventDefault(); // Evita que la página se recargue

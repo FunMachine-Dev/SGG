@@ -112,6 +112,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     var label = document.createElement('label');
                     label.textContent = titles[i]; // Establecer el texto del título
                     label.htmlFor = names[i]; // Asociar la etiqueta con el campo de texto
+                    // Si es el segundo campo de texto, asignar class "num_bol", de lo contrario, seguir con la lógica original
+                    label.classList.add(i === 1 ? "num-bol" : `label-${names[i]}`);
 
                     //Crear campo de texto
                     var input = document.createElement('input');
@@ -195,10 +197,6 @@ document.addEventListener('DOMContentLoaded', function () {
             // Actualiza el valor del campo 'total' con el nuevo total formateado
             document.getElementById('total').value = formatNumber(total.toString());
         }
-
-
-
-
     }
 
     //botón finalizar
@@ -296,17 +294,17 @@ document.addEventListener('DOMContentLoaded', function () {
     //Acorta el label del input N° Boleta/Factura en pantallas medianas
     function updateLabelText() {
         var label = document.getElementById('labelBolFact');
-        var label2 = document.getElementById('labelDiferencia');
+        var labels3 = document.querySelectorAll('.num-bol'); // Selecciona por clase
         if (window.innerWidth <= 882 && window.innerWidth >= 768) {
             label.textContent = 'N° bol/fact'; // Cambiar el texto para pantallas entre 768px y 882px
+            labels3.forEach(label => {
+                label.textContent = 'N° bol/fact'; // Aplica el cambio a cada elemento con la clase "num-bol"
+            });
         } else {
             label.textContent = 'N° boleta/factura'; // Texto por defecto
-        }
-        //Acorta label Diferencia rendición
-        if (window.innerWidth <= 882 && window.innerWidth >= 768) {
-            label2.textContent = 'Diferencia'; // Cambiar el texto para pantallas entre 768px y 882px
-        } else {
-            label2.textContent = 'Diferencia rendición'; // Texto por defecto
+            labels3.forEach(label => {
+                label.textContent = 'N° boleta/factura';
+            });
         }
     }
 
@@ -318,51 +316,73 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // sendMail
-document.getElementById('enviar').addEventListener('click', function () {
-    const modalContent = document.querySelector('.modal-body')?.innerHTML || '<p>No hay contenido en el modal</p>';
-    const userCorreo = localStorage.getItem('userCorreo'); // Recuperar el correo del usuario
+    document.getElementById('enviar').addEventListener('click', function () {
+        const modalContent = document.querySelector('.modal-body')?.innerHTML || '<p>No hay contenido en el modal</p>';
+        const userCorreo = localStorage.getItem('userCorreo'); // Recuperar el correo del usuario
+        const subject = document.querySelector('.txt-id-pag')?.childNodes[2]?.textContent.trim() || 'Sin asunto'; //extrae el nombre de la página para enviarla como subject
 
-    fetch('http://localhost:5000/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-            content: modalContent,
-            userCorreo: userCorreo // Incluir el correo en la solicitud
+        fetch('http://localhost:5000/send-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                content: modalContent,
+                userCorreo: userCorreo, // Incluir el correo del usuario en la solicitud
+                subject: subject // Incluir el asunto en la solicitud
+            })
         })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Correo enviado:', data);
-        //window.location.href = 'enviar-reembolso.html';
-    })
-    .catch(error => {
-        console.error('Error al enviar el correo:', error);
+            .then(response => response.json())
+            .then(data => {
+                console.log('Correo enviado:', data);
+                window.location.href = 'enviar-reembolso.html';
+            })
+            .catch(error => {
+                console.error('Error al enviar el correo:', error);
+            });
+
+
+
+        /*function mostrarPopupMail() {
+            var popup = document.getElementById("popupMail");
+    
+            // Hacer visible el popup con fade in
+            popup.style.display = "block";
+            setTimeout(function () {
+                popup.style.opacity = "1"; // Hacerlo completamente visible
+            }, 10); // Timeout pequeño para asegurar el cambio de estilo
+    
+            // Desaparecer el popup con fade out después de 1 segundo
+            setTimeout(function () {
+                popup.style.opacity = "0"; // Hacerlo transparente
+                setTimeout(function () {
+                    popup.style.display = "none"; // Ocultar completamente el popup después del fade
+                }, 500); // Tiempo para esperar que el fade-out termine
+            }, 1000); // Tiempo que permanecerá visible
+        }*/
+
+        //muestra popup al agregar gasto
+        function mostrarPopup() {
+            var popup = document.getElementById("popup");
+
+            // Hacer visible el popup con fade in
+            popup.style.display = "block";
+            setTimeout(function () {
+                popup.style.opacity = "1"; // Hacerlo completamente visible
+            }, 10); // Timeout pequeño para asegurar el cambio de estilo
+
+            // Desaparecer el popup con fade out después de 1 segundo
+            setTimeout(function () {
+                popup.style.opacity = "0"; // Hacerlo transparente
+                setTimeout(function () {
+                    popup.style.display = "none"; // Ocultar completamente el popup después del fade
+                }, 500); // Tiempo para esperar que el fade-out termine
+            }, 1000); // Tiempo que permanecerá visible
+        }
+
     });
 
 
-
-    /*function mostrarPopupMail() {
-        var popup = document.getElementById("popupMail");
-
-        // Hacer visible el popup con fade in
-        popup.style.display = "block";
-        setTimeout(function () {
-            popup.style.opacity = "1"; // Hacerlo completamente visible
-        }, 10); // Timeout pequeño para asegurar el cambio de estilo
-
-        // Desaparecer el popup con fade out después de 1 segundo
-        setTimeout(function () {
-            popup.style.opacity = "0"; // Hacerlo transparente
-            setTimeout(function () {
-                popup.style.display = "none"; // Ocultar completamente el popup después del fade
-            }, 500); // Tiempo para esperar que el fade-out termine
-        }, 1000); // Tiempo que permanecerá visible
-    }*/
-
-    //muestra popup al agregar gasto
     function mostrarPopup() {
         var popup = document.getElementById("popup");
-
         // Hacer visible el popup con fade in
         popup.style.display = "block";
         setTimeout(function () {
@@ -377,7 +397,5 @@ document.getElementById('enviar').addEventListener('click', function () {
             }, 500); // Tiempo para esperar que el fade-out termine
         }, 1000); // Tiempo que permanecerá visible
     }
-
-});
 
 });
